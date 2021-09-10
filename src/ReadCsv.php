@@ -12,6 +12,11 @@ class ReadCsv{
      * Save all the rows onto the array which is returned
      */
     public static function readCSV(string $fileStream){
+        //If file isn't a csv.
+        if(!is_readable($fileStream) && preg_match('/.+\.csv/',$fileStream)){
+            return false;
+        }
+        echo $fileStream.' it is a csv file<br/>';
         $file = fopen($fileStream,'r');
         while(($row = fgetcsv($file,0,","))!== FALSE){   
             $arrayCSV[] = $row;
