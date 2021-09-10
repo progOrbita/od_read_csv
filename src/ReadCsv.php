@@ -18,4 +18,16 @@ class ReadCsv{
         }
         return $arrayCSV;
     }
+    /**
+     * Check whetver file exist
+     */
+    public static function fileExist(string $source){
+        return file_exists($source);
+    }
+    /**
+     * Check whetever file can be readed
+     */
+    public static function fileReadable(string $source){
+            return is_readable($source);
+    }
 }
