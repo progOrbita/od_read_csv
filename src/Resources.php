@@ -49,21 +49,17 @@ class Resources
     /**
      * Checks if the content of the data is right
      * @param array $dataArray array to verify the content
+     * @return bool true if there's no errors and false otherwise
      */
-    public static function checkData(array $dataArray){
-        $false = 0;
+    public static function checkData(array $dataArray)
+    {
         foreach ($dataArray as $value) {
-            if(gettype($value) == 'string' ){
+
+            if (is_string($value)) {
                 echo $value;
-                $false = 1;
+                return false;
             }
-        }
-        if($false == 1){
-            return false;
         }
         return true;
     }
 }
-
-
-?>
