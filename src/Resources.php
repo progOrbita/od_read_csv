@@ -31,6 +31,24 @@ class Resources{
         }
         file_put_contents($file,$jsonData);
         return "<br/>Data inserted in file: ".$file;
+    }
+    /**
+     * Checks if the content of the data is right
+     * @param array $dataArray array to verify the content
+     */
+    public static function checkData(array $dataArray){
+        $false = 0;
+        foreach ($dataArray as $value) {
+            if(gettype($value) == 'string' ){
+                echo $value;
+                $false = 1;
+            }
+        }
+        if($false == 1){
+            return false;
+        }
+        return true;
+    }
 }
 
 
