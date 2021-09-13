@@ -15,11 +15,15 @@ class ReadCsv{
         //If file isn't a csv.
         if(!is_readable($fileStream) && preg_match('/.+\.csv/',$fileStream)){
             return false;
+        if (!file_exists($fileStream)) {
+            return "<b>" . $fileStream . "</b> doesn't exist<br/>";
         }
         echo $fileStream.' it is a csv file<br/>';
         $file = fopen($fileStream,'r');
         while(($row = fgetcsv($file,0,","))!== FALSE){   
             $arrayCSV[] = $row;
+        if (!is_readable($fileStream)) {
+            return "<b>" . $fileStream . "</b> couldn't be read<br/>";
         }
         return $arrayCSV;
     }
