@@ -42,9 +42,21 @@ class Resources
         file_put_contents($file, $jsonData);
         return '<br/>Data inserted in file: <b>' . $file.'</b>';
     }
+    /**
+     * Read and extract the data from the csv files into an joined array
+     * @param array $csvData array to extract information
+     * @return array $data array with the csv information
+     */
+    public static function processCsvArray($csvData)
+    {
+        //each lang key contains the csv with that language information
+        foreach ($csvData as $id_lang => $arr_value) {
+            foreach ($arr_value as $value) {
+                $data[$value['Id']]['Titulo'][$id_lang] = $value['Titulo'];
+                $data[$value['Id']]['Description'][$id_lang] = $value['Description'];
+            }
         }
-        file_put_contents($file,$jsonData);
-        return "<br/>Data inserted in file: ".$file;
+       return $data;
     }
     /**
      * Checks if the content of the data is right
