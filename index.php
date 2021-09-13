@@ -1,27 +1,29 @@
 <?php
 
+use OrbitaDigital\Read\ReadCsv;
 use OrbitaDigital\Read\Resources;
+
 require_once __DIR__ .'/vendor/autoload.php';
 
-$enArr = ReadCsv::ReadCsv('data_en.csv');
-$frArr = ReadCsv::ReadCsv('data_fr.csv');
-$esArr = ReadCsv::ReadCsv('data_es.csv');
-$ptArr = ReadCsv::ReadCsv('data_pt.csv');
+$data_en = ReadCsv::ReadCsv('data_en.csv');
+$data_fr = ReadCsv::ReadCsv('data_fr.csv');
+$data_es = ReadCsv::ReadCsv('data_es.csv');
+$data_pt = ReadCsv::ReadCsv('data_pt.csv');
 $aaArr = ReadCsv::ReadCsv('data_e.csv');
 $write = ReadCsv::ReadCsv('write_only.json');
 $noncsv = ReadCsv::ReadCsv('readme.md');
 
-if(gettype($enArr) == 'string' ){
-    echo $enArr;
+if(gettype($data_en) == 'string' ){
+    echo $data_en;
 }
-if(gettype($frArr) == 'string'){
-    echo $frArr;
+if(gettype($data_fr) == 'string'){
+    echo $data_fr;
 }
-if(gettype($esArr) == 'string'){
-    echo $esArr;
+if(gettype($data_es) == 'string'){
+    echo $data_es;
 }
-if(gettype($ptArr) == 'string'){
-    echo $ptArr;
+if(gettype($data_pt) == 'string'){
+    echo $data_pt;
 }
 if(gettype($aaArr) == 'string'){
     echo $aaArr;
@@ -33,17 +35,17 @@ if(gettype($noncsv) == 'string'){
     echo $noncsv;
 }
 
-if(gettype($enArr) == 'string' || gettype($esArr)=='string' || gettype($frArr)=='string' || gettype($ptArr)=='string'){
+if(gettype($data_en) == 'string' || gettype($data_es)=='string' || gettype($data_fr)=='string' || gettype($data_pt)=='string'){
     die('Check the files again');
 }
 
 $data = [];
 
  $data_lang = [
-     1 => $enArr,
-     2 => $frArr,
-     3 => $esArr,
-     4 => $ptArr,
+     1 => $data_en,
+     2 => $data_fr,
+     3 => $data_es,
+     4 => $data_pt,
  ];
 
 foreach ($data_lang as $id_lang => $arr_value) {
