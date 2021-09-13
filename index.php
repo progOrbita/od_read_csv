@@ -52,5 +52,21 @@ foreach ($data_lang as $id_lang => $arr_value) {
         $data[$value['Id']]['Description'][$id_lang] = $value['Description'];
     }
 }
-$saveJson = json_encode($arrayJson);
-file_put_contents('fileJson.json',$saveJson);
+$jsonData = json_encode($data,JSON_PRETTY_PRINT);
+$date = date('d_F_Y_H_i_s'); //day, month in letters, year 4 digits, 24hour_mins_seconds
+$dir = _PS_CORE_DIR_.'\practicas\od_read_csv';
+echo $dir.'<br/>';
+echo basename(__DIR__);
+$file = $dir.'/data_'.$date.'.json';
+
+    if(!is_dir($dir)){
+        die('Directory not found');
+    }
+    else if(!is_file($file)){
+        echo 'file dont exist, creating...';
+        $createdFile = fopen($file,'w');
+        fclose($createdFile);
+    }
+    else if(!is_writable($file)){
+        die('Information cant be written');
+    }
