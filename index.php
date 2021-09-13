@@ -10,17 +10,11 @@ if(!defined('_PS_VERSION_')){
     require_once '../../init.php';
 }
 
-$data_en = ReadCsv::ReadCsv('data_en.csv');
-$data_fr = ReadCsv::ReadCsv('data_fr.csv');
-$data_es = ReadCsv::ReadCsv('data_es.csv');
-$data_pt = ReadCsv::ReadCsv('data_pt.csv');
-
-$data = [];
 $data_lang = [
-     1 => $data_en,
-     2 => $data_fr,
-     3 => $data_es,
-     4 => $data_pt,
+     1 => ReadCsv::ReadCsv('data_en.csv'),
+     2 => ReadCsv::ReadCsv('data_fr.csv'),
+     3 => ReadCsv::ReadCsv('data_es.csv'),
+     4 => ReadCsv::ReadCsv('data_pt.csv'),
 ];
 
 if(Resources::checkData($data_lang) != false){
@@ -37,6 +31,7 @@ if(Resources::checkData($data_lang) != false){
 
     echo Resources::dataToJsonFile($data,$file,$dir);
 }
+
 else{
     echo "Check the files again";
 }
