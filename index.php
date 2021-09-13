@@ -3,10 +3,6 @@
 use OrbitaDigital\Read\Resources;
 require_once __DIR__ .'/vendor/autoload.php';
 
-$esArr = [];
-$enArr = [];
-$ptArr = [];
-$frArr = [];
 
 $enArr = Resources::processCsv('data_en.csv');
 $frArr = Resources::processCsv('data_fr.csv');
