@@ -21,7 +21,7 @@ class ReadCsv
             return "<b>" . $fileStream . "</b> couldn't be read<br/>";
         }
         if (preg_match('/^.+\.csv/i', $fileStream) <= 0) {
-            return "<b>" . $fileStream . "</b> isn't a .csv file";
+            return "<b>" . $fileStream . "</b> isn't a .csv file<br/>";
         }
 
         $file = fopen($fileStream, 'r');
