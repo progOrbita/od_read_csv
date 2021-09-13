@@ -18,13 +18,18 @@ class ReadCsv{
         if (!file_exists($fileStream)) {
             return "<b>" . $fileStream . "</b> doesn't exist<br/>";
         }
-        echo $fileStream.' it is a csv file<br/>';
-        $file = fopen($fileStream,'r');
-        while(($row = fgetcsv($file,0,","))!== FALSE){   
-            $arrayCSV[] = $row;
         if (!is_readable($fileStream)) {
             return "<b>" . $fileStream . "</b> couldn't be read<br/>";
         }
-        return $arrayCSV;
-    }
+        $file = fopen($fileStream, 'r');
+        $resultArr = [];
+        $headArr = [];
+        while (($row = fgetcsv($file, 0, ",")) !== FALSE) {
+            if (count($headArr) == 0) {
+                $headArr = $row;
+            } else {
+                array_push($resultArr, array_combine($headArr, $row));
+            }
+        }
+        return $resultArr;
     }
