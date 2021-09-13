@@ -2,7 +2,8 @@
 
 namespace OrbitaDigital\Read;
 
-class Resources{
+class Resources
+{
     /**
      * Write data to a file
      * @param array $data array containing all the information
@@ -10,22 +11,38 @@ class Resources{
      * @param string $dir Optional, folder where to insert the file. Default value is script location
      * @return string A message showing the result
      */
-    public static function dataToJsonFile($data,$file,$dir=null){
-        $jsonData = json_encode($data,JSON_PRETTY_PRINT);
         if($dir==null){
             //default route when no directory is sent, where script is executed.
             $dir = getcwd();
         }
-        if(!is_dir($dir)){
-            return 'Directory <b>'.$dir.'</b> not found';
-        }
-        else if(!is_file($file)){
-            echo '<br/>File dont exist, creating '.$file.' ...';
-            $createdFile = fopen($file,'w');
+    public static function dataToJsonFile($data)
+    {
+        $jsonData = json_encode($data, JSON_PRETTY_PRINT);
+        //Verify if directory exist and have write access
+        if (!is_dir($dir)) {
+            echo 'Directory <b>'.$dir.'</b> not found, creating...';
+            if (!mkdir($dir)) {
+                echo '<br/><b>' . $dir . '</b> cannot be created, verify the permissions';
+                return;
+            }
+            echo '<br/>Directory created';
+            //If file exist and can be created in the directory, create a new one.
+        } else if (!is_file($file)) {
+            echo '<br/>File dont exist, creating <b>' . $file . '</b> ...';
+            $createdFile = fopen($file, 'w');
+            //If file can't be created in the directory (access denied).
+            if ($createdFile == false) {
+                echo '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
+                return;
+            }
             fclose($createdFile);
+            //If file dont have write permissions
+        } else if (!is_writable($file)) {
+            return 'Information cant be written on <b>'.$file.'</b>';
         }
-        else if(!is_writable($file)){
-            return 'Information cant be written on '.$file;
+        file_put_contents($file, $jsonData);
+        return '<br/>Data inserted in file: <b>' . $file.'</b>';
+    }
         }
         file_put_contents($file,$jsonData);
         return "<br/>Data inserted in file: ".$file;
