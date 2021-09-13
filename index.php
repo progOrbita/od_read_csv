@@ -48,8 +48,8 @@ $data = [];
 
 foreach ($data_lang as $id_lang => $arr_value) {
     foreach ($arr_value as $value) {
-        echo $data[$value['Id']]['Titulo'][$id_lang] = $value['Titulo'];
-        echo $data[$value['Id']]['Description'][$id_lang] = $value['Description'];
+        $data[$value['Id']]['Titulo'][$id_lang] = $value['Titulo'];
+        $data[$value['Id']]['Description'][$id_lang] = $value['Description'];
     }
 }
 $saveJson = json_encode($arrayJson);
