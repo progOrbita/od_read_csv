@@ -1,10 +1,7 @@
 <?php
 
-if(!defined('_PS_VERSION_')){
-    require_once '../../config/config.inc.php';
-    require_once '../../init.php';
-}
 use OrbitaDigital\Read\ReadCsv;
+use OrbitaDigital\Read\Resources;
 require_once __DIR__ .'/vendor/autoload.php';
 
 $esArr = [];
@@ -13,10 +10,6 @@ $ptArr = [];
 $frArr = [];
 $masterArray = [];
 
-$enArr = ReadCsv::readCSV('data_en.csv');
-$frArr = ReadCsv::readCSV('data_fr.csv');
-$esArr = ReadCsv::readCSV('data_es.csv');
-$ptArr = ReadCsv::readCSV('data_pt.csv');
 
 $fileNumber = 4;
 
@@ -33,6 +26,13 @@ for ($i=1; $i < $fileNumber; $i++) {
                 ];
         }
     }
+$enArr = Resources::processCsv('data_en.csv');
+$frArr = Resources::processCsv('data_fr.csv');
+$esArr = Resources::processCsv('data_es.csv');
+$ptArr = Resources::processCsv('data_pt.csv');
+$aaArr = Resources::processCsv('data_e.csv');
+$write = Resources::processCsv('write_only.json');
+$noncsv = Resources::processCsv('readme.md');
 }
 //Merge the E1/E2/E3 fields
 $arrayJson = array_merge_recursive($masterArray[0],$masterArray[1],$masterArray[2],$masterArray[3],$masterArray[4],$masterArray[5]);
