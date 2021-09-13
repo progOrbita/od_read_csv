@@ -11,13 +11,12 @@ class Resources
      * @param string $dir Optional, folder where to insert the file. Default value is script location
      * @return string A message showing the result
      */
-        if($dir==null){
-            //default route when no directory is sent, where script is executed.
-            $dir = getcwd();
-        }
     public static function dataToJsonFile($data)
     {
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
+        $currentDate = date('d_M_Y_H_i_s'); //day, short month, year 4 digits, 24hour_mins_seconds
+        $dir = _PS_CORE_DIR_ . '/practicas/od_read_csv/rates_processed';
+        $file = $dir . '/data_' . $currentDate . '.json';
         //Verify if directory exist and have write access
         if (!is_dir($dir)) {
             echo 'Directory <b>'.$dir.'</b> not found, creating...';
