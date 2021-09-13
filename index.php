@@ -3,17 +3,41 @@
 use OrbitaDigital\Read\Resources;
 require_once __DIR__ .'/vendor/autoload.php';
 
+$enArr = ReadCsv::ReadCsv('data_en.csv');
+$frArr = ReadCsv::ReadCsv('data_fr.csv');
+$esArr = ReadCsv::ReadCsv('data_es.csv');
+$ptArr = ReadCsv::ReadCsv('data_pt.csv');
+$aaArr = ReadCsv::ReadCsv('data_e.csv');
+$write = ReadCsv::ReadCsv('write_only.json');
+$noncsv = ReadCsv::ReadCsv('readme.md');
 
-$enArr = Resources::processCsv('data_en.csv');
-$frArr = Resources::processCsv('data_fr.csv');
-$esArr = Resources::processCsv('data_es.csv');
-$ptArr = Resources::processCsv('data_pt.csv');
-$aaArr = Resources::processCsv('data_e.csv');
-$write = Resources::processCsv('write_only.json');
-$noncsv = Resources::processCsv('readme.md');
+if(gettype($enArr) == 'string' ){
+    echo $enArr;
+}
+if(gettype($frArr) == 'string'){
+    echo $frArr;
+}
+if(gettype($esArr) == 'string'){
+    echo $esArr;
+}
+if(gettype($ptArr) == 'string'){
+    echo $ptArr;
+}
+if(gettype($aaArr) == 'string'){
+    echo $aaArr;
+}
+if(gettype($write) == 'string'){
+    echo $write;
+}
+if(gettype($noncsv) == 'string'){
+    echo $noncsv;
+}
 
 //Merge the arrays
 $merge = array_merge($enArr,$frArr,$esArr,$ptArr);
+if(gettype($enArr) == 'string' || gettype($esArr)=='string' || gettype($frArr)=='string' || gettype($ptArr)=='string'){
+    die('Check the files again');
+}
 
 $data = [];
 
