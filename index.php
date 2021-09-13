@@ -5,6 +5,11 @@ use OrbitaDigital\Read\Resources;
 
 require_once __DIR__ .'/vendor/autoload.php';
 
+if(!defined('_PS_VERSION_')){
+    require_once '../../config/config.inc.php';
+    require_once '../../init.php';
+}
+
 $data_en = ReadCsv::ReadCsv('data_en.csv');
 $data_fr = ReadCsv::ReadCsv('data_fr.csv');
 $data_es = ReadCsv::ReadCsv('data_es.csv');
