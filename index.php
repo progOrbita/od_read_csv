@@ -1,6 +1,5 @@
 <?php
 
-use OrbitaDigital\Read\ReadCsv;
 use OrbitaDigital\Read\Resources;
 require_once __DIR__ .'/vendor/autoload.php';
 
@@ -8,7 +7,6 @@ $esArr = [];
 $enArr = [];
 $ptArr = [];
 $frArr = [];
-$masterArray = [];
 
 $enArr = Resources::processCsv('data_en.csv');
 $frArr = Resources::processCsv('data_fr.csv');
@@ -25,8 +23,7 @@ $data = [];
 
 foreach ($merge as $key => $value) {
     $data[$value['Id']]['Titulo'][] = $value['Titulo'];
-    $data[$value['Id']]['Description'][] = $value['Description'];
-    
+    $data[$value['Id']]['Description'][] = $value['Description'];   
 }
 $saveJson = json_encode($arrayJson);
 file_put_contents('fileJson.json',$saveJson);
