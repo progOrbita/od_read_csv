@@ -7,7 +7,7 @@ class Resources{
      * Write data to a file
      * @param array $data array containing all the information
      * @param string $file Name of the file to be created and inserted the data
-     * @param string $dir Optional, folder where to insert the file
+     * @param string $dir Optional, folder where to insert the file. Default value is script location
      * @return string A message showing the result
      */
     public static function dataToJsonFile($data,$file,$dir=null){

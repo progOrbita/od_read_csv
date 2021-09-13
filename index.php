@@ -35,7 +35,7 @@ if(Resources::checkData($data_lang) != false){
     $dir = _PS_CORE_DIR_.'\practicas\od_read_csv';
     $file = $dir.'/data_'.$date.'.json';
 
-    echo Resources::dataToJsonFile($data,'write_only.json',$dir);
+    echo Resources::dataToJsonFile($data,$file,$dir);
 }
 else{
     echo "Check the files again";

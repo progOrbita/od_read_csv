@@ -9,8 +9,10 @@ class ReadCsv
     /**
      * Read a file and returns the array with the data.
      * Open the filestream, r -> read mode only.
-     * fgetcsv requires de file, line length to read and separator. Will return false at the end of the file
-     * Save all the rows onto the array which is returned
+     * fgetcsv requires the file, line length to read and separator. Will return false at the end of the file
+     * Save the header and the rows onto the array which is returned
+     * @param string $fileStream file to be readed
+     * @return mixed string with the message error or array with the file data
      */
     public static function readCSV(string $fileStream)
     {
