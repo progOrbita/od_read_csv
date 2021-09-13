@@ -12,12 +12,10 @@ class Resources{
      */
     public static function dataToJsonFile($data,$file,$dir=null){
         $jsonData = json_encode($data,JSON_PRETTY_PRINT);
-        $date = date('d_F_Y_H_i_s'); //day, month in letters, year 4 digits, 24hour_mins_seconds
         if($dir==null){
             //default route when no directory is sent, where script is executed.
             $dir = getcwd();
         }
-        $file = $dir.'/data_'.$date.'.json';
         if(!is_dir($dir)){
             return 'Directory not found';
         }
