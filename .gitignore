@@ -1,4 +1,4 @@
 /vendor
 composer.lock
-.csv
-.json
+*.csv
+*.json
