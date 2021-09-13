@@ -33,17 +33,24 @@ if(gettype($noncsv) == 'string'){
     echo $noncsv;
 }
 
-//Merge the arrays
-$merge = array_merge($enArr,$frArr,$esArr,$ptArr);
 if(gettype($enArr) == 'string' || gettype($esArr)=='string' || gettype($frArr)=='string' || gettype($ptArr)=='string'){
     die('Check the files again');
 }
 
 $data = [];
 
-foreach ($merge as $key => $value) {
-    $data[$value['Id']]['Titulo'][] = $value['Titulo'];
-    $data[$value['Id']]['Description'][] = $value['Description'];   
+ $data_lang = [
+     1 => $enArr,
+     2 => $frArr,
+     3 => $esArr,
+     4 => $ptArr,
+ ];
+
+foreach ($data_lang as $id_lang => $arr_value) {
+    foreach ($arr_value as $value) {
+        echo $data[$value['Id']]['Titulo'][$id_lang] = $value['Titulo'];
+        echo $data[$value['Id']]['Description'][$id_lang] = $value['Description'];
+    }
 }
 $saveJson = json_encode($arrayJson);
 file_put_contents('fileJson.json',$saveJson);
