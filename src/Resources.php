@@ -17,7 +17,7 @@ class Resources{
             $dir = getcwd();
         }
         if(!is_dir($dir)){
-            return 'Directory not found';
+            return 'Directory <b>'.$dir.'</b> not found';
         }
         else if(!is_file($file)){
             echo '<br/>File dont exist, creating '.$file.' ...';
@@ -25,7 +25,7 @@ class Resources{
             fclose($createdFile);
         }
         else if(!is_writable($file)){
-            return 'Information cant be written';
+            return 'Information cant be written on '.$file;
         }
         file_put_contents($file,$jsonData);
         return "<br/>Data inserted in file: ".$file;
