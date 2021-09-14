@@ -1,7 +1,7 @@
 <?php
 
-use OrbitaDigital\Read\Json;
 use OrbitaDigital\Read\Csv;
+use OrbitaDigital\Read\Json;
 use OrbitaDigital\Read\Resources;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -17,6 +17,6 @@ $data_lang = [
 $csvData = Resources::processCsvArray($data_lang);
 
 
-$jsonfile = Json::readJson('rates_processed/data_13_Sep_2021.json');
-$jsonReaded = json_decode($jsonFile,true);
+$jsonFile = Json::readJson('rates_processed/data_13_Sep_2021.json');
+$jsonReaded = json_decode($jsonFile, true);
 echo $readerJson->showJsonData($jsonReaded);

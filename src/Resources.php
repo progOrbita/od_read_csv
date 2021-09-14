@@ -13,7 +13,7 @@ class Resources
     public static function dataToJsonFile(array $data, string $prefix = ''): string
     {
         $csvData = json_encode($data, JSON_PRETTY_PRINT, JSON_FORCE_OBJECT);
-        $currentDate = date('d_M_Y'); //day, short month, year 4 digits, 24hour_mins_seconds
+        $currentDate = date('d_M_Y'); //day, short month and year 4 digits
         $dir = getcwd() . '/rates_processed'; //takes current script directory
         $file = $dir . '/' . $prefix . '_' . $currentDate . '.json';
         //Verify if directory exist and have write access

@@ -33,7 +33,7 @@ class ReadFiles
      * Get the information of the error from the checks.
      * @return string string containing the information
      */
-    protected function getError():string
+    protected function getError(): string
     {
         return self::$lastError;
     }
