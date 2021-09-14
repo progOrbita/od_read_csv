@@ -20,11 +20,11 @@ $jsonFile = Json::readJson('rates_processed/data_13_Sep_2021.json');
 $jsonReaded = json_decode($jsonFile, true);
 echo Json::showJsonData($jsonReaded);
 
-$dataError = Resources::findErrorsJson($jsonReaded, $csvData);
+$dataError = Resources::findErrorsArray($jsonReaded, $csvData);
 
 if ($dataError === false) {
     die('Keys dont match, json cant be compared');
 } else {
     echo 'Error founds, saved in a file';
-    echo Resources::dataToJsonFile($dataError, 'error');
+    echo Json::dataToJsonFile($dataError);
 }
