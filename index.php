@@ -18,8 +18,8 @@ if (Resources::checkCsvData($data_lang) != false) {
     $csvData = Resources::processCsvArray($data_lang);
     echo Resources::dataToJsonFile($csvData, 'data');
 } else {
-    echo "Check the files again";
+    die("Check the files again");
 }
 $readerJson = new Json();
 $jsonReaded = json_decode($readerJson->readJson('rates_processed/data_13_Sep_2021.json'), true);
-$readerJson->showJsonData($jsonReaded);
+echo $readerJson->showJsonData($jsonReaded);

@@ -17,12 +17,12 @@ $data_new_lang = [
 if (Resources::checkCsvData($data_new_lang) != false) {
     $csvData = Resources::processCsvArray($data_new_lang);
 } else {
-    echo "Check the files again";
+    die("Check the files again");
 }
 $reader = new Json();
 $json = $reader->readJson('rates_processed/data_13_Sep_2021.json');
 $readed = json_decode($json, true);
-$reader->showJsonData($readed);
+echo $reader->showJsonData($readed);
 
 $dataError = Resources::findErrorsJson($readed, $csvData);
 if (sizeof($dataError) > 0) {
