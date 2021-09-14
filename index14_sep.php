@@ -26,4 +26,6 @@ if (Resources::checkCsvData($data_new_lang) != false) {
 $readed = json_decode(ReadJson::readJson('rates_processed/data_13_Sep_2021.json'),true);
 
 Resources::showJsonData($readed);
-Resources::compareJsonData($csvData,$readed);
+Resources::compareJsonData($csvData,$readed);    echo 'Error founds, saved in a file';
+    echo Resources::dataToJsonFile($dataError, 'error');
+}

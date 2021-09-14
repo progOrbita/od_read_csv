@@ -7,14 +7,15 @@ class Resources
     /**
      * Writes data to a file
      * @param array $data array containing all the information
+     * @param string $prefix optional, add a prefix to the file
      * @return string A message showing the result
      */
-    public static function dataToJsonFile(array $data): string
+    public static function dataToJsonFile(array $data, string $prefix = ''): string
     {
-        $csvData = json_encode($data, JSON_PRETTY_PRINT);
+        $csvData = json_encode($data, JSON_PRETTY_PRINT, JSON_FORCE_OBJECT);
         $currentDate = date('d_M_Y'); //day, short month, year 4 digits, 24hour_mins_seconds
         $dir = getcwd() . '/rates_processed'; //takes current script directory
-        $file = $dir . '/data_' . $currentDate . '.json';
+        $file = $dir . '/' . $prefix . '_' . $currentDate . '.json';
         //Verify if directory exist and have write access
         if (!is_dir($dir)) {
             echo 'Directory <b>' . $dir . '</b> not found, creating...';

@@ -20,7 +20,7 @@ $data_lang = [
 
 if (Resources::checkCsvData($data_lang) != false) {
     $csvData = Resources::processCsvArray($data_lang);
-    echo Resources::dataToJsonFile($csvData);
+    echo Resources::dataToJsonFile($csvData, 'data');
 } else {
     echo "Check the files again";
 }
