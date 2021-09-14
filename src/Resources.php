@@ -18,9 +18,8 @@ class Resources
         //Verify if directory exist and have write access
         if (!is_dir($dir)) {
             echo 'Directory <b>' . $dir . '</b> not found, creating...';
-                echo '<br/><b>' . $dir . '</b> cannot be created, verify the permissions';
-                return;
             if (!mkdir($dir, 0777, true)) {
+                return '<br/><b>' . $dir . '</b> cannot be created, verify the permissions';
             }
             echo '<br/>Directory created';
             //If file exist and can be created in the directory, create a new one.
@@ -29,8 +28,7 @@ class Resources
             $createdFile = fopen($file, 'w');
             //If file can't be created in the directory (access denied).
             if ($createdFile == false) {
-                echo '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
-                return;
+                return '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
             }
             fclose($createdFile);
             //If file dont have write permissions
@@ -66,7 +64,6 @@ class Resources
         foreach ($dataArray as $csvData) {
 
             if (is_string($csvData)) {
-                echo $csvData;
                 return false;
             }
         }
