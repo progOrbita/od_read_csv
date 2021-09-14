@@ -2,6 +2,7 @@
 
 use OrbitaDigital\Read\ReadCsv;
 use OrbitaDigital\Read\Resources;
+use OrbitaDigital\Read\ReadJson;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -23,3 +24,5 @@ if (Resources::checkCsvData($data_lang) != false) {
 } else {
     echo "Check the files again";
 }
+$jsonReaded = json_decode(ReadJson::readJson('rates_processed/data_13_Sep_2021.json'),true);
+Resources::showJsonData($jsonReaded);
