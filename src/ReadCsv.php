@@ -33,6 +33,10 @@ class ReadCsv
             if (count($headArr) == 0) {
                 $headArr = $row;
             } else {
+                //Check whetever the first value (after Id) is empty
+                if(empty($row[0])){
+                    continue;
+                }
                 array_push($resultArr, array_combine($headArr, $row));
             }
         }
