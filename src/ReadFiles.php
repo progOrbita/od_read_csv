@@ -6,25 +6,25 @@ namespace OrbitaDigital\Read;
 
 class ReadFiles
 {
-    private $lastError = '';
+    private static $lastError = '';
     /**
      * Check if file exist, can be readed and extension is right
      * @param string $file file to be checked
      * @param string $extension extension of the file
      * @return bool true if there's no error. False otherwise
      */
-    protected function checkFile(string $file, string $extension): bool
+    protected static function checkFile(string $file, string $extension): bool
     {
         if (!file_exists($file)) {
-            $this->lastError = "<b>" . $file . "</b> doesn't exist<br/>";
+            self::$lastError = "<b>" . $file . "</b> doesn't exist<br/>";
             return false;
         }
         if (!is_readable($file)) {
-            $this->lastError = "<b>" . $file . "</b> couldn't be read<br/>";
+            self::$lastError = "<b>" . $file . "</b> couldn't be read<br/>";
             return false;
         }
         if (preg_match('/^.+\.' . $extension . '/i', $file) <= 0) {
-            $this->lastError = "<b>" . $file . "</b> isn't a " . $extension . " file<br/>";
+            self::$lastError = "<b>" . $file . "</b> isn't a " . $extension . " file<br/>";
             return false;
         }
         return true;
@@ -35,6 +35,6 @@ class ReadFiles
      */
     protected function getError():string
     {
-        return $this->lastError;
+        return self::$lastError;
     }
 }

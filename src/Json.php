@@ -11,7 +11,7 @@ class Json extends ReadFiles
      * @param string $jsonStream json file to be readed
      * @return mixed string with the json encoded.
      */
-    public function readJson(string $jsonStream)
+    public static function readJson(string $jsonStream)
     {
         if (parent::checkFile($jsonStream, 'json')) {
             return file_get_contents($jsonStream);
@@ -24,7 +24,7 @@ class Json extends ReadFiles
      * @param array $jsonData json information to be shown in the screen
      * @return string $output html string with the information extracted
      */
-    public function showJsonData(array $jsonData)
+    public static function showJsonData(array $jsonData)
     {
         $output = '';
         foreach ($jsonData as $key => $value) {

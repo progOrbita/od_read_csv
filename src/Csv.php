@@ -14,7 +14,7 @@ class Csv extends ReadFiles
      * @param string $csvFile file to be readed
      * @return mixed string with the message error or array with the file data. Exit if file cant be readed by any means.
      */
-    public function readCSV(string $csvFile)
+    public static function readCSV(string $csvFile)
     {
         if (parent::checkFile($csvFile, 'csv')) {
             $file = fopen($csvFile, 'r');
