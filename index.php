@@ -17,7 +17,7 @@ $data_lang = [
     4 => ReadCsv::ReadCsv('rates/data_pt.csv'),
 ];
 
-if (Resources::checkData($data_lang) != false) {
+if (Resources::checkCsvData($data_lang) != false) {
     $csvData = Resources::processCsvArray($data_lang);
     echo Resources::dataToJsonFile($csvData);
 } else {
