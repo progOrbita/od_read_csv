@@ -75,7 +75,7 @@ class Resources
      * Show jsonData on index
      * @param array $jsonData json information to be shown in the screen
      */
-    public static function showJsonData(array $jsonData):void
+    public static function showJsonData(array $jsonData)
     {
         foreach ($jsonData as $key => $value) {
             foreach ($value as $key2 => $value2) {
@@ -91,22 +91,23 @@ class Resources
     }
     /**
      * Compare two arrays to find distinct values beetwen both
-     * @param array $rightJson json which is fine
-     * @param array $jsonToCompare json which may contains errors and will return them if the value is different
-     * @return array $errorArrays with the errors located beetwen both files
+     * @param array $rightArray json which is fine
+     * @param array $arrayToCompare json which may contains errors and will return them if the value is different
+     * @return array $errorArrays with the errors located beetwen both files. Empty if no
      */
-    public static function findErrorsJson(array $rightJson, array $jsonToCompare): array
+    public static function findErrorsJson(array $rightArray, array $arrayToCompare): array
     {
         $errorArrays = [];
-        $languages = [1 => 'English', 2 => 'French', 3 => 'Spanish', 4 => 'Portuguese'];
-        foreach ($rightJson as $key => $value) {
+        foreach ($rightArray as $key => $value) {
             foreach ($value as $key2 => $value2) {
-                for ($i = 1; $i <= 4; $i++) {
-                    $compareValue = $jsonToCompare[$key][$key2][$i];
-                    $rightValue = $rightJson[$key][$key2][$i];
-                    if ($rightValue !== $compareValue) {
-                        $errorArrays[$key][$key2][$languages[$i]][] = $compareValue;
+                if (array_keys($rightArray[$key]) === array_keys($arrayToCompare[$key])) {
+                    for ($i = 1; $i <= 4; $i++) {
+                        if ($rightArray[$key][$key2][$i] !== $arrayToCompare[$key][$key2][$i]) {
+                            $errorArrays[$key][$key2][$i][] = $arrayToCompare[$key][$key2][$i];
+                        }
                     }
+                } else {
+                    return $errorArrays;
                 }
             }
         }
