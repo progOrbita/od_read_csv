@@ -9,7 +9,7 @@ class Resources
      * @param array $data array containing all the information
      * @return string A message showing the result
      */
-    public static function dataToJsonFile($data)
+    public static function dataToJsonFile($data): string
     {
         $csvData = json_encode($data, JSON_PRETTY_PRINT);
         $currentDate = date('d_M_Y_H_i_s'); //day, short month, year 4 digits, 24hour_mins_seconds
@@ -45,7 +45,7 @@ class Resources
      * @param array $csvData csv array to extract information
      * @return array $data array with the joined csv information
      */
-    public static function processCsvArray($csvData)
+    public static function processCsvArray(array $csvData): array
     {
         //each id_lang key contains the csv with that language csv
         foreach ($csvData as $id_lang => $lang_csv) {
@@ -61,7 +61,7 @@ class Resources
      * @param array $dataArray array to verify the content
      * @return bool true if there's no errors and false otherwise
      */
-    public static function checkCsvData(array $dataArray)
+    public static function checkCsvData(array $dataArray): bool
     {
         foreach ($dataArray as $csvData) {
 
