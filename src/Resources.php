@@ -18,9 +18,9 @@ class Resources
         //Verify if directory exist and have write access
         if (!is_dir($dir)) {
             echo 'Directory <b>' . $dir . '</b> not found, creating...';
-            if (!mkdir($dir)) {
                 echo '<br/><b>' . $dir . '</b> cannot be created, verify the permissions';
                 return;
+            if (!mkdir($dir, 0777, true)) {
             }
             echo '<br/>Directory created';
             //If file exist and can be created in the directory, create a new one.
