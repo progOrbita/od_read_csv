@@ -21,3 +21,22 @@ class Json extends ReadFiles
            return;
         }
     }
+    /**
+     * Show jsonData on index
+     * @param array $jsonData json information to be shown in the screen
+     */
+    public function showJsonData(array $jsonData)
+    {
+        foreach ($jsonData as $key => $value) {
+            foreach ($value as $key2 => $value2) {
+                echo $key . '<br/>';
+                echo $key2;
+                for ($i = 1; $i <= 4; $i++) {
+                    echo '<br/>' . $value2[$i];
+                }
+                echo '<br/>';
+            }
+            echo '<br/>';
+        }
+    }
+}

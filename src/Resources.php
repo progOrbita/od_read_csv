@@ -72,24 +72,6 @@ class Resources
     }
 
     /**
-     * Show jsonData on index
-     * @param array $jsonData json information to be shown in the screen
-     */
-    public static function showJsonData(array $jsonData)
-    {
-        foreach ($jsonData as $key => $value) {
-            foreach ($value as $key2 => $value2) {
-                echo $key . '<br/>';
-                echo $key2;
-                for ($i = 1; $i <= 4; $i++) {
-                    echo '<br/>' . $value2[$i];
-                }
-                echo '<br/>';
-            }
-            echo '<br/>';
-        }
-    }
-    /**
      * Compare two arrays to find distinct values beetwen both
      * @param array $rightArray json which is fine
      * @param array $arrayToCompare json which may contains errors and will return them if the value is different
