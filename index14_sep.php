@@ -25,6 +25,5 @@ $dataError = Resources::findErrorsArray($jsonReaded, $csvData);
 if ($dataError === false) {
     die('Keys dont match, json cant be compared');
 } else {
-    echo 'Error founds, saved in a file';
-    echo Json::dataToJsonFile($dataError);
+    echo 'Error founds, '. Json::dataToJsonFile($dataError);
 }

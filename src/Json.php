@@ -52,7 +52,7 @@ class Json extends ReadFiles
             return 'Information cant be written on <b>' . $file . '</b>';
         }
         file_put_contents($file, $csvData);
-        return '<br/>Data inserted in file: <b>' . $file . '</b>';
+        return 'data inserted in the file: <b>' . $file . '</b>';
     }
     /**
      * Show the data contained in the array
