@@ -27,7 +27,7 @@ class Resources
      * @param array $arrayToCompare json which may contains errors and will return them if the value is different
      * @return mixed $errorArrays with the errors located beetwen both files. Empty if no error. False if keys differs
      */
-    public static function findErrorsJson(array $rightArray, array $arrayToCompare)
+    public static function findErrorsArray(array $rightArray, array $arrayToCompare)
     {
         $errorArrays = [];
         foreach ($rightArray as $key => $value) {
