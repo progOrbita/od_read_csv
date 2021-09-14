@@ -23,16 +23,18 @@ class ReadFiles
             $this->lastError = "<b>" . $file . "</b> couldn't be read<br/>";
             return false;
         }
-        if (preg_match('/^.+\.'.$extension.'/i', $file) <= 0) {
-            $this->lastError = "<b>" . $file . "</b> isn't a ".$extension." file<br/>";
+        if (preg_match('/^.+\.' . $extension . '/i', $file) <= 0) {
+            $this->lastError = "<b>" . $file . "</b> isn't a " . $extension . " file<br/>";
             return false;
         }
         return true;
     }
     /**
      * Get the information of the error from the checks.
+     * @return string string containing the information
      */
-    protected function getError(){
+    protected function getError():string
+    {
         return $this->lastError;
     }
 }

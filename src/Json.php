@@ -7,18 +7,16 @@ namespace OrbitaDigital\Read;
 class Json extends ReadFiles
 {
     /**
-     * Read a json file and returns the array with the data.
+     * Read a json file and returns the array with the data. Ends the script if there's an error with the file
      * @param string $jsonStream json file to be readed
-     * @return mixed string with the json encoded or ends script
+     * @return mixed string with the json encoded.
      */
-    public function readJson(string $jsonStream): string
+    public function readJson(string $jsonStream)
     {
-        if(parent::checkFile($jsonStream,'json')){
+        if (parent::checkFile($jsonStream, 'json')) {
             return file_get_contents($jsonStream);
-        }
-        else{
-           echo parent::getError();
-           return;
+        } else {
+            die(parent::getError());
         }
     }
     /**
