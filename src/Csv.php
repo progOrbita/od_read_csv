@@ -8,17 +8,15 @@ class Csv extends ReadFiles
 {
     /**
      * Read a file and returns the array with the data.
-     * Open the filestream, r -> read mode only.
+     * Open the file, r -> read mode only.
      * fgetcsv requires the file, line length to read and separator. Will return false at the end of the file
      * Save the header and the rows onto the array which is returned
-     * @param string $fileStream file to be readed
-     * @return mixed string with the message error or array with the file data
+     * @param string $csvFile file to be readed
+     * @return mixed string with the message error or array with the file data. Exit if file cant be readed by any means.
      */
     public function readCSV(string $csvFile)
     {
-        parent::checkFile($csvFile,'csv');
-        
-        if (ReadFiles::CheckFile($csvFile, 'csv')) {
+        if (parent::checkFile($csvFile, 'csv')) {
             $file = fopen($csvFile, 'r');
             $resultArr = [];
             $headArr = [];
@@ -37,6 +35,8 @@ class Csv extends ReadFiles
                 }
             }
             return $resultArr;
+        } else {
+            die(parent::getError());
         }
     }
 }
