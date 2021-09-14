@@ -12,7 +12,7 @@ class Resources
     public static function dataToJsonFile(array $data): string
     {
         $csvData = json_encode($data, JSON_PRETTY_PRINT);
-        $currentDate = date('d_M_Y_H_i_s'); //day, short month, year 4 digits, 24hour_mins_seconds
+        $currentDate = date('d_M_Y'); //day, short month, year 4 digits, 24hour_mins_seconds
         $dir = getcwd() . '/rates_processed'; //takes current script directory
         $file = $dir . '/data_' . $currentDate . '.json';
         //Verify if directory exist and have write access
@@ -68,5 +68,20 @@ class Resources
             }
         }
         return true;
+    }
+    public static function showJsonData(array $jsonData){
+        foreach ($jsonData as $key => $value) {
+            foreach ($value as $key2 => $value2) {
+                if(strlen(trim($value2)) != 1){
+                    echo $key.'<br/>';
+                    echo $key2;
+                    for ($i=1; $i <= 4; $i++) { 
+                        echo '<br/>'.$value2[$i];
+                    }
+                    echo '<br/>';
+                }
+            }
+            echo '<br/>';
+        }
     }
 }
