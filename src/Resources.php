@@ -75,13 +75,10 @@ class Resources
     {
         foreach ($jsonData as $key => $value) {
             foreach ($value as $key2 => $value2) {
-                if (strlen(trim($value2)) != 1) {
-                    echo $key . '<br/>';
-                    echo $key2;
-                    for ($i = 1; $i <= 4; $i++) {
-                        echo '<br/>' . $value2[$i];
-                    }
-                    echo '<br/>';
+                echo $key . '<br/>';
+                echo $key2;
+                for ($i = 1; $i <= 4; $i++) {
+                    echo '<br/>' . $value2[$i];
                 }
             }
             echo '<br/>';
@@ -92,13 +89,11 @@ class Resources
         $errorArrays = [];
         foreach ($rightData as $key => $value) {
             foreach ($value as $key2 => $value2) {
-                if (strlen(trim($value2)) != 1) {
-                    for ($i = 1; $i <= 4; $i++) {
-                        $compareValue = $jsonToCompare[$key][$key2][$i];
-                        $rightValue = $rightData[$key][$key2][$i];
-                        if ($rightValue !== $compareValue) {
-                            $errorArrays[$key][$key2][$i][] = $compareValue;
-                        }
+                for ($i = 1; $i <= 4; $i++) {
+                    $compareValue = $jsonToCompare[$key][$key2][$i];
+                    $rightValue = $rightJson[$key][$key2][$i];
+                    if ($rightValue !== $compareValue) {
+                        $errorArrays[$key][$key2][$languages[$i]][] = $compareValue;
                     }
                 }
             }
