@@ -71,7 +71,11 @@ class Resources
         return true;
     }
 
-    public static function showJsonData(array $jsonData)
+    /**
+     * Show jsonData on index
+     * @param array $jsonData json information to be shown in the screen
+     */
+    public static function showJsonData(array $jsonData):void
     {
         foreach ($jsonData as $key => $value) {
             foreach ($value as $key2 => $value2) {
@@ -80,14 +84,22 @@ class Resources
                 for ($i = 1; $i <= 4; $i++) {
                     echo '<br/>' . $value2[$i];
                 }
+                echo '<br/>';
             }
             echo '<br/>';
         }
     }
-    public static function findErrorsJson(array $rightData, array $jsonToCompare)
+    /**
+     * Compare two arrays to find distinct values beetwen both
+     * @param array $rightJson json which is fine
+     * @param array $jsonToCompare json which may contains errors and will return them if the value is different
+     * @return array $errorArrays with the errors located beetwen both files
+     */
+    public static function findErrorsJson(array $rightJson, array $jsonToCompare): array
     {
         $errorArrays = [];
-        foreach ($rightData as $key => $value) {
+        $languages = [1 => 'English', 2 => 'French', 3 => 'Spanish', 4 => 'Portuguese'];
+        foreach ($rightJson as $key => $value) {
             foreach ($value as $key2 => $value2) {
                 for ($i = 1; $i <= 4; $i++) {
                     $compareValue = $jsonToCompare[$key][$key2][$i];
