@@ -25,6 +25,5 @@ class ReadJson
             return "<b>" . $jsonStream . "</b> isn't a .json file<br/>";
         }
         return file_get_contents($jsonStream);
-        
     }
 }

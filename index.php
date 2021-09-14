@@ -24,5 +24,5 @@ if (Resources::checkCsvData($data_lang) != false) {
 } else {
     echo "Check the files again";
 }
-$jsonReaded = json_decode(ReadJson::readJson('rates_processed/data_13_Sep_2021.json'),true);
+$jsonReaded = json_decode(ReadJson::readJson('rates_processed/data_13_Sep_2021.json'), true);
 Resources::showJsonData($jsonReaded);

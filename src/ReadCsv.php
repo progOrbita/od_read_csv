@@ -31,13 +31,13 @@ class ReadCsv
         $headArr = [];
         while (($row = fgetcsv($file, 0, ",")) !== FALSE) {
             if (count($headArr) == 0) {
-                if(empty($row[0])){
+                if (empty($row[0])) {
                     return '<b>Header not found or incorrect</b>';
                 }
                 $headArr = $row;
             } else {
                 //Check whetever the first value is empty
-                if(empty($row[0])){
+                if (empty($row[0])) {
                     continue;
                 }
                 array_push($resultArr, array_combine($headArr, $row));
