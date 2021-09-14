@@ -16,13 +16,15 @@ $data_new_lang = [
 
 $csvData = Resources::processCsvArray($data_new_lang);
 
+$jsonFile = Json::readJson('rates_processed/data_13_Sep_2021.json');
+$jsonReaded = json_decode($jsonFile, true);
+echo Json::showJsonData($jsonReaded);
 
-$json = Json::readJson('rates_processeda_13_Sep_2021.json');
-$jsonRead = json_decode($json, true);
-echo Json::showJsonData($jsonRead);
+$dataError = Resources::findErrorsJson($jsonReaded, $csvData);
 
-$dataError = Resources::findErrorsJson($readed, $csvData);
-if (sizeof($dataError) > 0) {
+if ($dataError === false) {
+    die('Keys dont match, json cant be compared');
+} else {
     echo 'Error founds, saved in a file';
     echo Resources::dataToJsonFile($dataError, 'error');
 }

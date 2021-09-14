@@ -60,9 +60,9 @@ class Resources
      * Compare two arrays to find distinct values beetwen both
      * @param array $rightArray json which is fine
      * @param array $arrayToCompare json which may contains errors and will return them if the value is different
-     * @return array $errorArrays with the errors located beetwen both files. Empty if no
+     * @return mixed $errorArrays with the errors located beetwen both files. Empty if no error. False if keys differs
      */
-    public static function findErrorsJson(array $rightArray, array $arrayToCompare): array
+    public static function findErrorsJson(array $rightArray, array $arrayToCompare)
     {
         $errorArrays = [];
         foreach ($rightArray as $key => $value) {
@@ -74,7 +74,7 @@ class Resources
                         }
                     }
                 } else {
-                    return $errorArrays;
+                    return false;
                 }
             }
         }
