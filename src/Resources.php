@@ -13,7 +13,7 @@ class Resources
     {
         $csvData = json_encode($data, JSON_PRETTY_PRINT);
         $currentDate = date('d_M_Y_H_i_s'); //day, short month, year 4 digits, 24hour_mins_seconds
-        $dir = getcwd() . '/rates_processed';
+        $dir = getcwd() . '/rates_processed'; //takes current script directory
         $file = $dir . '/data_' . $currentDate . '.json';
         //Verify if directory exist and have write access
         if (!is_dir($dir)) {
