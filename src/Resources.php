@@ -55,21 +55,6 @@ class Resources
         }
         return $data;
     }
-    /**
-     * Checks if the content of the data is right
-     * @param array $dataArray array to verify the content
-     * @return bool true if there's no errors and false otherwise
-     */
-    public static function checkCsvData(array $dataArray): bool
-    {
-        foreach ($dataArray as $csvData) {
-
-            if (is_string($csvData)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Compare two arrays to find distinct values beetwen both
