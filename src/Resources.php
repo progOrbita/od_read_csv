@@ -9,7 +9,7 @@ class Resources
      * @param array $data array containing all the information
      * @return string A message showing the result
      */
-    public static function dataToJsonFile($data): string
+    public static function dataToJsonFile(array $data): string
     {
         $csvData = json_encode($data, JSON_PRETTY_PRINT);
         $currentDate = date('d_M_Y_H_i_s'); //day, short month, year 4 digits, 24hour_mins_seconds
