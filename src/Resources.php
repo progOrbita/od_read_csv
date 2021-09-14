@@ -70,14 +70,16 @@ class Resources
         }
         return true;
     }
-    public static function showJsonData(array $jsonData){
+
+    public static function showJsonData(array $jsonData)
+    {
         foreach ($jsonData as $key => $value) {
             foreach ($value as $key2 => $value2) {
-                if(strlen(trim($value2)) != 1){
-                    echo $key.'<br/>';
+                if (strlen(trim($value2)) != 1) {
+                    echo $key . '<br/>';
                     echo $key2;
-                    for ($i=1; $i <= 4; $i++) { 
-                        echo '<br/>'.$value2[$i];
+                    for ($i = 1; $i <= 4; $i++) {
+                        echo '<br/>' . $value2[$i];
                     }
                     echo '<br/>';
                 }
