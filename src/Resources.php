@@ -85,4 +85,22 @@ class Resources
             echo '<br/>';
         }
     }
+    public static function findErrorsJson(array $rightData, array $jsonToCompare)
+    {
+        $errorArrays = [];
+        foreach ($rightData as $key => $value) {
+            foreach ($value as $key2 => $value2) {
+                if (strlen(trim($value2)) != 1) {
+                    for ($i = 1; $i <= 4; $i++) {
+                        $compareValue = $jsonToCompare[$key][$key2][$i];
+                        $rightValue = $rightData[$key][$key2][$i];
+                        if ($rightValue !== $compareValue) {
+                            $errorArrays[$key][$key2][$i][] = $compareValue;
+                        }
+                    }
+                }
+            }
+        }
+        return $errorArrays;
+    }
 }
