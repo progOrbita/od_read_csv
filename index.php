@@ -15,4 +15,4 @@ $data_lang = [
 ];
 
 $csvData = $csvReader->process($data_lang);
-echo $jsonReader->dataToFile($csvData, 'data');
+echo $jsonReader->saveJson($csvData, 'data');
