@@ -25,24 +25,26 @@ class Resources
      * Compare two arrays to find distinct values beetwen both
      * @param array $rightArray json which is fine
      * @param array $arrayToCompare json which may contains errors and will return them if the value is different
-     * @return mixed $errorArrays with the errors located beetwen both files. Empty if no error. False if keys differs
+     * @return bool|array $errorArrays with the errors located beetwen both files. False if keys differs.
      */
-    public static function findErrorsArray(array $rightArray, array $arrayToCompare)
+    public static function findErrors(array $rightArray, array $arrayToCompare)
     {
-        $errorArrays = [];
+        $dataError = [];
+
         foreach ($rightArray as $key => $value) {
-            foreach ($value as $key2 => $value2) {
-                if (array_keys($rightArray[$key]) === array_keys($arrayToCompare[$key])) {
-                    for ($i = 1; $i <= 4; $i++) {
-                        if ($rightArray[$key][$key2][$i] !== $arrayToCompare[$key][$key2][$i]) {
-                            $errorArrays[$key][$key2][$i][] = $arrayToCompare[$key][$key2][$i];
-                        }
+            if (array_keys($rightArray[$key]) === array_keys($arrayToCompare[$key])) {
+                for ($i = 1; $i <= 4; $i++) {
+                    if ($rightArray[$key]['Titulo'][$i] !== $arrayToCompare[$key]['Titulo'][$i]) {
+                        $dataError[$key]['Titulo'][$i][] = $arrayToCompare[$key]['Titulo'][$i];
                     }
-                } else {
-                    return false;
+                    if ($rightArray[$key]['Description'][$i] !== $arrayToCompare[$key]['Description'][$i]) {
+                        $dataError[$key]['Description'][$i] = $arrayToCompare[$key]['Description'][$i];
+                    }
                 }
+            } else {
+                return false;
             }
         }
-        return $errorArrays;
+        return $dataError;
     }
 }
