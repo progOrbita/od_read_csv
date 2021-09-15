@@ -63,25 +63,4 @@ class Json extends ReadFiles
         $message .= '<br/>data inserted in the file: <b>' . $file . '</b>';
         return $message;
     }
-    /**
-     * Show the data contained in the array
-     * @param array $jsonData json information to be shown in the screen
-     * @return string $output html string with the information extracted
-     */
-    public function showJsonData(array $jsonData)
-    {
-        $output = '';
-        foreach ($jsonData as $key => $value) {
-            foreach ($value as $key2 => $value2) {
-                $output .= $key . '<br/>';
-                $output .= $key2;
-                for ($i = 1; $i <= 4; $i++) {
-                    $output .= '<br/>' . $value2[$i];
-                }
-                $output .= '<br/>';
-            }
-            $output .= '<br/>';
-        }
-        return $output;
-    }
 }
