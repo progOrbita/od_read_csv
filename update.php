@@ -8,6 +8,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $jsonReader = new Json();
 $csvReader = new Csv();
+$reader = new ReadFiles();
 
 $data_new_lang = [
     1 => $csvReader->read('rates/data_en_2.csv'),
@@ -22,7 +23,7 @@ $date = date('d_M_Y', strtotime('-1 day'));
 $jsonFile = $jsonReader->readJson('rates_processed/data_' . $date . '.json');
 $jsonReaded = json_decode($jsonFile, true);
 
-$dataError = ReadFiles::findErrors($jsonReaded, $csvData);
+$dataError = $reader->findErrors($jsonReaded, $csvData);
 
 if ($dataError === false) {
     die('Keys dont match, arrays cant be compared');

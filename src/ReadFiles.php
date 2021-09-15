@@ -7,6 +7,7 @@ namespace OrbitaDigital\Read;
 class ReadFiles
 {
     private $lastError = '';
+    
     /**
      * Check if file exist, can be readed and extension is right
      * @param string $file file to be checked
@@ -43,7 +44,7 @@ class ReadFiles
      * @param array $arrayToCompare csv array which may contains errors and will return them if the value is different
      * @return bool|array $errorArrays with the errors located beetwen both files. False if keys differs.
      */
-    public static function findErrors(array $rightArray, array $arrayToCompare)
+    public function findErrors(array $rightArray, array $arrayToCompare)
     {
 
         $dataError = [];
