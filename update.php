@@ -26,6 +26,9 @@ $dataError = $jsonReader->findErrors(json_decode($jsonFile, true), $csvData);
 
 if ($dataError === false) {
     die('Keys dont match, arrays cant be compared');
+}
+if ($dataError === true) {
+    die('No errors found');
 } else {
     echo '<br/>Error founds, ' . $jsonReader->saveJson($dataError, 'error');
 }

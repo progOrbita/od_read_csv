@@ -102,6 +102,6 @@ class ReadFiles
                 return false;
             }
         }
-        return $dataError;
+        return sizeof($dataError) === 0 ? true : $dataError;
     }
 }
