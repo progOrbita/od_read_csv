@@ -20,10 +20,13 @@ class Csv extends ReadFiles
             $file = fopen($csvFile, 'r');
             $resultArr = [];
             $headArr = [];
+            if (filesize($csvFile) === 0) {
+                return '<b>' . $csvFile . ' file is empty</b>, verify the content again';
+            }
             while (($row = fgetcsv($file, 0, ",")) !== FALSE) {
                 if (count($headArr) == 0) {
                     if (empty($row[0])) {
-                        return '<b>Header not found or incorrect</b>';
+                        return '<b>Error reading the header of ' . $csvFile . ', exiting</b>';
                     }
                     $headArr = $row;
                 } else {
