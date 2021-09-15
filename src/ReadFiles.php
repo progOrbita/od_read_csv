@@ -31,7 +31,7 @@ class ReadFiles
         return true;
     }
     /**
-     * Get the information of the error from the file checks.
+     * Get the information of the error produced
      * @return string string containing the information
      */
     protected function getError(): string
@@ -55,8 +55,8 @@ class ReadFiles
         if (!is_dir($dir)) {
             $message .= 'Directory <b>' . $dir . '</b> not found, creating...';
             if (!mkdir($dir, 0777, true)) {
-                $message .= '<br/><b>' . $dir . '</b> cannot be created, verify the permissions';
-                return $message;
+                $this->lastError = '<br/><b>' . $dir . '</b> cannot be created, verify the permissions';
+                return $this->getError();
             }
             $message .= '<br/>Directory created';
             //If file exist and can be created in the directory, create a new one.
@@ -65,14 +65,14 @@ class ReadFiles
             $createdFile = @fopen($file, 'w');
             //If file can't be created in the directory (access denied).
             if ($createdFile == false) {
-                $message .= '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
-                return $message;
+                $this->lastError = '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
+                return $this->getError();
             }
             fclose($createdFile);
             //If file dont have write permissions
         } else if (!is_writable($file)) {
-            $message .= '<br/>Check your write permissions, information couldnt be written on <b>' . $file . '</b>';
-            return $message;
+            $this->lastError = '<br/>Check your write permissions, information couldnt be written on <b>' . $file . '</b>';
+            return $this->getError();
         }
         file_put_contents($file, $csvData);
         $message .= '<br/>data inserted in the file: <b>' . $file . '</b>';

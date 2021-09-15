@@ -29,5 +29,5 @@ if ($dataError === false) {
 if ($dataError === true) {
     die('No errors found');
 } else {
-    echo '<br/>Error founds, ' . $jsonReader->saveJson($dataError, 'error');
+    echo '<br/>Error founds between the files, ' . $jsonReader->saveJson($dataError, 'error');
 }
