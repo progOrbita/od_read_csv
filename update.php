@@ -9,13 +9,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $jsonReader = new Json();
 $csvReader = new Csv();
+$data_new_lang = [];
 
-$data_new_lang = [
-    1 => $csvReader->read('rates/data_en_2.csv'),
-    2 => $csvReader->read('rates/data_fr_2.csv'),
-    3 => $csvReader->read('rates/data_es_2.csv'),
-    4 => $csvReader->read('rates/data_pt_2.csv'),
-];
+$csvLang = ['rates/data_en_2.csv', 'rates/data_fr_2.csv', 'rates/data_es_2.csv', 'rates/data_pt_2.csv'];
+for ($i = 0; $i < sizeof($csvLang); $i++) {
+    $data_new_lang[$i + 1] = $csvReader->read($csvLang[$i]);
+}
 
 $csvData = $csvReader->process($data_new_lang);
 
