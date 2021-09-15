@@ -15,17 +15,15 @@ $data_new_lang = [
 
 $csvData = Resources::processCsvArray($data_new_lang);
 
-$date = date('d_M_Y', strtotime(date('d_M_Y') . '-1 day'));
+$date = date('d_M_Y', strtotime('-1 day'));
 
 $jsonFile = Json::readJson('rates_processed/data_' . $date . '.json');
 $jsonReaded = json_decode($jsonFile, true);
-if(is_string($csvData)){
-    die('csv file wrong');
-}
+
 $dataError = Resources::findErrors($jsonReaded, $csvData);
 
 if ($dataError === false) {
     die('Keys dont match, array cant be compared');
 } else {
-    echo '<br/>Error founds, ' . Json::dataToFile($dataError,'error');
+    echo '<br/>Error founds, ' . Json::dataToFile($dataError, 'error');
 }

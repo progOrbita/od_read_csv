@@ -43,16 +43,16 @@ class Resources
      */
     public static function findErrors(array $rightArray, array $arrayToCompare)
     {
-        $dataError = [];
 
-        foreach ($rightArray as $key => $value) {
-            if (array_keys($rightArray[$key]) === array_keys($arrayToCompare[$key])) {
-                for ($i = 1; $i <= 4; $i++) {
-                    if ($rightArray[$key]['Titulo'][$i] !== $arrayToCompare[$key]['Titulo'][$i]) {
-                        $dataError[$key]['Titulo'][$i][] = $arrayToCompare[$key]['Titulo'][$i];
+        $dataError = [];
+        foreach ($rightArray as $id => $value) {
+            if (array_keys($rightArray[$id]) === array_keys($arrayToCompare[$id])) {
+                for ($id_lang = 1; $id_lang <= 4; $id_lang++) {
+                    if ($rightArray[$id]['Titulo'][$id_lang] !== $arrayToCompare[$id]['Titulo'][$id_lang]) {
+                        $dataError[$id]['Titulo'][$id_lang][] = $arrayToCompare[$id]['Titulo'][$id_lang];
                     }
-                    if ($rightArray[$key]['Description'][$i] !== $arrayToCompare[$key]['Description'][$i]) {
-                        $dataError[$key]['Description'][$i] = $arrayToCompare[$key]['Description'][$i];
+                    if ($rightArray[$id]['Description'][$id_lang] !== $arrayToCompare[$id]['Description'][$id_lang]) {
+                        $dataError[$id]['Description'][$id_lang] = $arrayToCompare[$id]['Description'][$id_lang];
                     }
                 }
             } else {
