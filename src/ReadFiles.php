@@ -39,7 +39,7 @@ class ReadFiles
         return $this->lastError;
     }
     /**
-     * Writes data to a file
+     * Writes data to a json file
      * @param array $data array containing all the information
      * @param string $prefix optional, add a prefix to the file
      * @return string A message showing the result
@@ -78,6 +78,8 @@ class ReadFiles
         $message .= '<br/>data inserted in the file: <b>' . $file . '</b>';
         return $message;
     }
+    /**
+     * Compare the json file with the array of csv files to find distinct values beetwen both
      * @param array $rightArray json which is fine
      * @param array $arrayToCompare csv array which may contains errors and will return them if the value is different
      * @return bool|array $errorArrays with the errors located beetwen both files. False if keys differs.
