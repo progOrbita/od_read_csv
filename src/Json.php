@@ -13,14 +13,14 @@ class Json extends ReadFiles
      */
     public function readJson(string $jsonStream)
     {
-        if (parent::checkFile($jsonStream, 'json')) {
+        if ($this->checkFile($jsonStream, 'json')) {
             $jsonString = file_get_contents($jsonStream);
             if (empty($jsonString)) {
                 die('<b>' . $jsonStream . '</b> is empty, check it again');
             }
             return $jsonString;
         } else {
-            die(parent::getError());
+            die($this->getError());
         }
     }
     /**

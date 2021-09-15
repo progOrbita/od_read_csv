@@ -16,7 +16,7 @@ class Csv extends ReadFiles
      */
     public function read(string $csvFile)
     {
-        if (parent::checkFile($csvFile, 'csv')) {
+        if ($this->checkFile($csvFile, 'csv')) {
             $file = fopen($csvFile, 'r');
             $resultArr = [];
             $headArr = [];
@@ -39,11 +39,11 @@ class Csv extends ReadFiles
             }
             return $resultArr;
         } else {
-            die(parent::getError());
+            die($this->getError());
         }
     }
     /**
-     * Read and extract the data from an array of csv files into an joined array
+     * Read and extract the data from an array of csv files into an joined array. Exit if a file is empty
      * @param array $csvData csv array to extract information
      * @return array $data array with the joined csv information
      */
