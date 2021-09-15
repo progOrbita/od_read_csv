@@ -14,7 +14,11 @@ class Json extends ReadFiles
     public static function readJson(string $jsonStream)
     {
         if (parent::checkFile($jsonStream, 'json')) {
-            return file_get_contents($jsonStream);
+            $jsonString = file_get_contents($jsonStream);
+            if(empty($jsonString)){
+                die('<b>'.$jsonStream.'</b> is empty, check it again');
+            }
+            return $jsonString;
         } else {
             die(parent::getError());
         }
@@ -25,7 +29,7 @@ class Json extends ReadFiles
      * @param string $prefix optional, add a prefix to the file
      * @return string A message showing the result
      */
-    public static function dataToJsonFile(array $data, string $prefix = ''): string
+    public static function dataToFile(array $data, string $prefix = ''): string
     {
         $csvData = json_encode($data, JSON_PRETTY_PRINT, JSON_FORCE_OBJECT);
         $currentDate = date('d_M_Y'); //day, short month and year 4 digits

@@ -15,8 +15,8 @@ $data_lang = [
 ];
 
 $csvData = Resources::processCsvArray($data_lang);
-echo Json::dataToJsonFile($csvData, 'data');
 $jsonFile = Json::readJson('rates_processed/data_13_Sep_2021.json');
 
 $jsonReaded = json_decode($jsonFile, true);
 echo Json::showJsonData($jsonReaded);
+echo Json::dataToFile($csvData, 'data');
