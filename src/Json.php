@@ -11,7 +11,7 @@ class Json extends ReadFiles
      * @param string $jsonStream json file to be readed
      * @return mixed string with the json encoded.
      */
-    public static function readJson(string $jsonStream)
+    public function readJson(string $jsonStream)
     {
         if (parent::checkFile($jsonStream, 'json')) {
             $jsonString = file_get_contents($jsonStream);
@@ -29,7 +29,7 @@ class Json extends ReadFiles
      * @param string $prefix optional, add a prefix to the file
      * @return string A message showing the result
      */
-    public static function dataToFile(array $data, string $prefix = ''): string
+    public function dataToFile(array $data, string $prefix = ''): string
     {
         $message = '';
         $csvData = json_encode($data, JSON_PRETTY_PRINT, JSON_FORCE_OBJECT);
@@ -68,7 +68,7 @@ class Json extends ReadFiles
      * @param array $jsonData json information to be shown in the screen
      * @return string $output html string with the information extracted
      */
-    public static function showJsonData(array $jsonData)
+    public function showJsonData(array $jsonData)
     {
         $output = '';
         foreach ($jsonData as $key => $value) {
