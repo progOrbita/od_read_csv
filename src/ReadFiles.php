@@ -6,7 +6,7 @@ namespace OrbitaDigital\Read;
 
 class ReadFiles
 {
-    private static $lastError = '';
+    private $lastError = '';
     /**
      * Check if file exist, can be readed and extension is right
      * @param string $file file to be checked
@@ -35,7 +35,8 @@ class ReadFiles
      */
     protected function getError(): string
     {
-        return self::$lastError;
+        return $this->lastError;
+    }
     /**
      * Compare two arrays to find distinct values beetwen both
      * @param array $rightArray json which is fine
