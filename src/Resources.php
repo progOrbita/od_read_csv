@@ -9,7 +9,7 @@ class Resources
      * @param array $csvData csv array to extract information
      * @return array $data array with the joined csv information
      */
-    public static function processCsvArray(array $csvData)
+    public static function processCsvArray(array $csvData): array
     {
         //each id_lang key contains the csv with that language csv
         self::verifyCsvContent($csvData);
@@ -24,6 +24,7 @@ class Resources
     /**
      * Check if the csv files have content, exiting if an error was found.
      * @param array $csvData array with the csv information
+     * @return bool if content is right, ends process if there's an error.
      */
     private static function verifyCsvContent(array $csvData): bool
     {
