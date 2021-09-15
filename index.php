@@ -8,10 +8,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 
 $data_lang = [
-    1 => Csv::readCSV('rates/data_en.csv'),
-    2 => Csv::readCSV('rates/data_fr.csv'),
-    3 => Csv::readCSV('rates/data_es.csv'),
-    4 => Csv::readCSV('rates/data_pt.csv'),
+    1 => Csv::read('rates/data_en.csv'),
+    2 => Csv::read('rates/data_fr.csv'),
+    3 => Csv::read('rates/data_es.csv'),
+    4 => Csv::read('rates/data_pt.csv'),
 ];
 
 $csvData = Resources::processCsvArray($data_lang);
