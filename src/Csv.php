@@ -42,4 +42,35 @@ class Csv extends ReadFiles
             die(parent::getError());
         }
     }
+    /**
+     * Read and extract the data from an array of csv files into an joined array
+     * @param array $csvData csv array to extract information
+     * @return array $data array with the joined csv information
+     */
+    public function process(array $csvData): array
+    {
+        //each id_lang key contains the csv with that language csv
+        $this->verifyContent($csvData);
+        foreach ($csvData as $id_lang => $lang_csv) {
+            foreach ($lang_csv as $csv_values) {
+                $data[$csv_values['Id']]['Titulo'][$id_lang] = $csv_values['Titulo'];
+                $data[$csv_values['Id']]['Description'][$id_lang] = $csv_values['Description'];
+            }
+        }
+        return $data;
+    }
+    /**
+     * Check if the csv files have content, exiting if an error was found.
+     * @param array $csvData array with the csv information
+     * @return bool if content is right, ends process if there's an error.
+     */
+    private function verifyContent(array $csvData): bool
+    {
+        foreach ($csvData as $lang_csv) {
+            if (is_string($lang_csv)) {
+                die($lang_csv);
+            }
+        }
+        return true;
+    }
 }
