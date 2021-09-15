@@ -31,7 +31,7 @@ class ReadFiles
         return true;
     }
     /**
-     * Get the information of the error from the checks.
+     * Get the information of the error from the file checks.
      * @return string string containing the information
      */
     protected function getError(): string
@@ -51,7 +51,7 @@ class ReadFiles
         $currentDate = date('d_M_Y'); //day, short month and year 4 digits
         $dir = getcwd() . '/rates_processed'; //takes current script directory
         $file = $dir . '/' . $prefix . '_' . $currentDate . '.json';
-        //Verify if directory exist and have write access
+        //Verify if directory exist and have write access (can nest directories)
         if (!is_dir($dir)) {
             $message .= 'Directory <b>' . $dir . '</b> not found, creating...';
             if (!mkdir($dir, 0777, true)) {
@@ -62,7 +62,7 @@ class ReadFiles
             //If file exist and can be created in the directory, create a new one.
         } else if (!is_file($file)) {
             $message .= '<br/>File dont exist, creating <b>' . $file . '</b> ...';
-            $createdFile = fopen($file, 'w');
+            $createdFile = @fopen($file, 'w');
             //If file can't be created in the directory (access denied).
             if ($createdFile == false) {
                 $message .= '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
@@ -71,7 +71,7 @@ class ReadFiles
             fclose($createdFile);
             //If file dont have write permissions
         } else if (!is_writable($file)) {
-            $message .= '<br/>Information cant be written on <b>' . $file . '</b>';
+            $message .= '<br/>Check your write permissions, information couldnt be written on <b>' . $file . '</b>';
             return $message;
         }
         file_put_contents($file, $csvData);
@@ -80,8 +80,8 @@ class ReadFiles
     }
     /**
      * Compare the json file with the array of csv files to find distinct values beetwen both
-     * @param array $rightArray json which have right values
-     * @param array $arrayToCompare csv array which may contains errors and will return them if the value is different
+     * @param array $jsonDecoded json which have right values
+     * @param array $csvFiles csv array with the files
      * @return bool|array Array with the errors located beetwen both files. True if no errors were found, false if keys differs.
      */
     public function findErrors(array $jsonDecoded, array $csvFiles)
