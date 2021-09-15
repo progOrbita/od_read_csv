@@ -7,7 +7,7 @@ namespace OrbitaDigital\Read;
 class ReadFiles
 {
     private $lastError = '';
-    
+
     /**
      * Check if file exist, can be readed and extension is right
      * @param string $file file to be checked
@@ -80,9 +80,9 @@ class ReadFiles
     }
     /**
      * Compare the json file with the array of csv files to find distinct values beetwen both
-     * @param array $rightArray json which is fine
+     * @param array $rightArray json which have right values
      * @param array $arrayToCompare csv array which may contains errors and will return them if the value is different
-     * @return bool|array $errorArrays with the errors located beetwen both files. False if keys differs.
+     * @return bool|array Array with the errors located beetwen both files. True if no errors were found, false if keys differs.
      */
     public function findErrors(array $jsonDecoded, array $csvFiles)
     {

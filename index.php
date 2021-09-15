@@ -13,6 +13,5 @@ $data_lang = [
     3 => $csvReader->read('rates/data_es.csv'),
     4 => $csvReader->read('rates/data_pt.csv'),
 ];
-
 $csvData = $csvReader->process($data_lang);
 echo $jsonReader->saveJson($csvData, 'data');

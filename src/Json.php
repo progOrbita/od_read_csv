@@ -31,6 +31,6 @@ class Json extends ReadFiles
      */
     public function saveJson(array $data, string $prefix = ''): string
     {
-        return $this->dataToFile($data,$prefix);
+        return $this->dataToFile($data, $prefix);
     }
 }
