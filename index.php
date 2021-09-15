@@ -2,10 +2,8 @@
 
 use OrbitaDigital\Read\Csv;
 use OrbitaDigital\Read\Json;
-use OrbitaDigital\Read\Resources;
 
 require_once __DIR__ . '/vendor/autoload.php';
-
 
 $jsonReader = new Json();
 $csvReader = new Csv();

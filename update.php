@@ -2,7 +2,7 @@
 
 use OrbitaDigital\Read\Csv;
 use OrbitaDigital\Read\Json;
-use OrbitaDigital\Read\Resources;
+use OrbitaDigital\Read\ReadFiles;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
