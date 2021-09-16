@@ -8,7 +8,7 @@ use OrbitaDigital\Read\Json;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $jsonReader = new Json();
-$csvReader = new Csv(['Id', 'Titulo', 'Description'], 'asdas');
+$csvReader = new Csv(['Id', 'Titulo', 'Description']);
 
 $data_new_lang = [];
 
@@ -19,11 +19,12 @@ for ($i = 0; $i < count($csvLang); $i++) {
 }
 
 if (!$csvReader->verifyContent($data_new_lang)) {
-    die();
+    die($csvReader->getLastError());
 }
 
 $date = date('d_M_Y', strtotime('-1 day'));
 $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
+
 
 if (!$jsonData) {
     die();

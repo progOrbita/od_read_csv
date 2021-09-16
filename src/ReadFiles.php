@@ -6,7 +6,7 @@ namespace OrbitaDigital\Read;
 
 class ReadFiles
 {
-    private $lastError = '';
+    protected $lastError = '';
 
     /**
      * Check if file exist, can be readed and extension is right

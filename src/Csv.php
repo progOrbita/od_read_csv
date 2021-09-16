@@ -75,11 +75,11 @@ class Csv extends ReadFiles
      * @param array $csvFiles array with the files
      * @return bool true if the array dont contains errors, false if there's one
      */
-    public function verifyContent(array $csvFiles): bool
+    public function verifyContent(array $csvFiles)
     {
         foreach ($csvFiles as $fileData) {
             if (is_string($fileData)) {
-                echo $fileData;
+                $this->lastError = $fileData;
                 return false;
             }
         }
