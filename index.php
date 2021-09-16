@@ -4,7 +4,6 @@ namespace OrbitaDigital\Read;
 
 use OrbitaDigital\Read\Csv;
 use OrbitaDigital\Read\Json;
-use OrbitaDigital\Read\Save;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -19,4 +18,4 @@ for ($i = 0; $i < count($csvLang); $i++) {
     $data_lang[$i + 1] = $csvReader->read($csvLang[$i]);
 }
 $csvData = $csvReader->process($data_lang);
-echo $save->saveJson($csvData, 'data');
+echo $jsonReader->save($csvData, 'data');

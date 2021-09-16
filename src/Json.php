@@ -20,4 +20,8 @@ class Json extends ReadFiles
         }
         return file_get_contents($stream);
     }
+    public function save(array $saveData, string $prefix = ''): string
+    {
+        return $this->saveJson($saveData, $prefix);
+    }
 }
