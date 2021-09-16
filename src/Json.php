@@ -8,9 +8,9 @@ class Json extends ReadFiles
 {
 
     /**
-     * Read a json file and returns the array with the data. Ends the script if there's an error with the file
+     * Read a json file and returns the array with the data if no errors are found.
      * @param string $jsonStream json file to be readed
-     * @return mixed string with the json encoded.
+     * @return string|bool string with the json encoded. False if there's an error.
      */
     public function readJson(string $jsonStream)
     {

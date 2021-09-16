@@ -27,7 +27,6 @@ class Csv extends ReadFiles
             }
             while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
                 if (count($header) == 0) {
-                    //if header dont match
                     if (!$this->checkHeader($row)) {
                         return '<b>Header dont match, exiting...';
                     }
@@ -58,7 +57,7 @@ class Csv extends ReadFiles
         return true;
     }
     /**
-     * Read and extract the data from an array of csv files into an joined array. Exit if a file is empty
+     * Read and extract the data from an array of csv files into an joined array.
      * @param array $csvData csv array to extract information
      * @return array $data array with the joined csv information
      */
@@ -74,9 +73,9 @@ class Csv extends ReadFiles
         return $data;
     }
     /**
-     * Check if the csv files contains an error.
+     * Check if the csv files array contains an error message.
      * @param array $csvData array with the csv information
-     * @return bool true if content dont contains messages, false if not
+     * @return bool true if content dont contains messages, false if contains one
      */
     public function verifyContent(array $csvData): bool
     {

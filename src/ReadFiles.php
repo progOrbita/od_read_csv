@@ -31,8 +31,8 @@ class ReadFiles
         return true;
     }
     /**
-     * Get the information of the error from the file checks.
-     * @return string string containing the information
+     * Get lastError, contains the information of the last error from the file checks.
+     * @return string lastError
      */
 
     protected function getLastError(): string
