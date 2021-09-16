@@ -7,7 +7,10 @@ namespace OrbitaDigital\Read;
 class Csv extends ReadFiles
 {
     private $csv_header = [];
-
+    /**
+     * Constructor
+     * @param array $csv_header Header expected in the csv files
+     */
     function __construct(array $csv_header)
     {
         $this->csv_header = $csv_header;
