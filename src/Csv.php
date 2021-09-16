@@ -20,12 +20,7 @@ class Csv extends ReadFiles
         if (!$this->checkFile($file, 'csv')) {
             return $this->getlastError();
         }
-        if (filesize($file) === 0) {
-            return '<b>' . $file . ' file is empty</b>, verify the content again';
-        }
-
         $data = [];
-
         $fileOpen = fopen($file, 'r');
         $header = fgetcsv($fileOpen, 0, ",");
 

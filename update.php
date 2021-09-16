@@ -28,7 +28,7 @@ $date = date('d_M_Y', strtotime('-1 day'));
 $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 
 if (!$jsonData) {
-    die('Json file is empty');
+    die();
 }
 $dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csvData);
 

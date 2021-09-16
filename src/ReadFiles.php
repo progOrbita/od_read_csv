@@ -28,6 +28,10 @@ class ReadFiles
             $this->lastError = "<b>" . $file . "</b> isn't a " . $extension . " file<br/>";
             return false;
         }
+        if (filesize($file) === 0) {
+            $this->lastError = '<b>' . $file . ' file is empty</b>, verify the content again';
+            return false;
+        }
         return true;
     }
     /**

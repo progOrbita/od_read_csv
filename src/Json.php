@@ -18,10 +18,6 @@ class Json extends ReadFiles
             echo $this->getlastError();
             return false;
         }
-        $fileContent = file_get_contents($stream);
-        if (empty($fileContent)) {
-            return false;
-        }
-        return $fileContent;
+        return file_get_contents($stream);
     }
 }
