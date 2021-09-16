@@ -6,7 +6,7 @@ namespace OrbitaDigital\Read;
 
 class Csv extends ReadFiles
 {
-    private $csv_header = ['Id', 'Titulo', 'Description'];
+    private $csv_header = [];
     /**
      * Read a file and returns the array with the data.
      * Open the file, r -> read mode only.
@@ -27,10 +27,13 @@ class Csv extends ReadFiles
             }
             while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
                 if (count($header) == 0) {
-                    if (!$this->checkHeader($row)) {
-                        return '<b>Header dont match, exiting...';
-                    }
                     $header = $row;
+                    if (count($this->csv_header) == 0) {
+                        $this->csv_header = $row;
+                    }
+                    if (!$this->checkHeader($row)) {
+                        return 'Header of <b>'.$file.'</b> is wrong';
+                    }
                 } else {
                     //if the first value after header is empty, skip the row
                     if (empty($row[0])) {
