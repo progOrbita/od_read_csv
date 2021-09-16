@@ -6,6 +6,7 @@ namespace OrbitaDigital\Read;
 
 class Json extends ReadFiles
 {
+
     /**
      * Read a json file and returns the array with the data. Ends the script if there's an error with the file
      * @param string $jsonStream json file to be readed
@@ -23,15 +24,5 @@ class Json extends ReadFiles
             echo $this->getlastError();
             return false;
         }
-    }
-    /**
-     * Writes data to a file
-     * @param array $data array containing all the information
-     * @param string $prefix optional, add a prefix to the file
-     * @return string A message showing the result
-     */
-    public function saveJson(array $data, string $prefix = ''): string
-    {
-        return $this->dataToFile($data, $prefix);
     }
 }

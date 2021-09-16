@@ -65,7 +65,6 @@ class Csv extends ReadFiles
     public function process(array $csvData): array
     {
         //each id_lang key contains the csv with that language csv
-        $this->verifyContent($csvData);
         foreach ($csvData as $id_lang => $lang_csv) {
             foreach ($lang_csv as $csv_values) {
                 $data[$csv_values['Id']]['Titulo'][$id_lang] = $csv_values['Titulo'];
@@ -75,11 +74,11 @@ class Csv extends ReadFiles
         return $data;
     }
     /**
-     * Check if the csv files have content, exiting if an error was found.
+     * Check if the csv files contains an error.
      * @param array $csvData array with the csv information
-     * @return bool if content is right, ends process if there's an error.
+     * @return bool true if content dont contains messages, false if not
      */
-    private function verifyContent(array $csvData): bool
+    public function verifyContent(array $csvData): bool
     {
         foreach ($csvData as $lang_csv) {
             if (is_string($lang_csv)) {

@@ -31,15 +31,15 @@ class ReadFiles
         return true;
     }
     /**
-     * Get the information of the error produced
+     * Get the information of the error from the file checks.
      * @return string string containing the information
      */
-    
+
     protected function getLastError(): string
     {
         return $this->lastError;
     }
-    
+
     /**
      * Compare the json file with the array of csv files to find distinct values beetwen both
      * @param array $jsonDecoded json which have right values

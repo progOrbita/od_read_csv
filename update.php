@@ -25,12 +25,12 @@ if (!$csvReader->verifyContent($data_new_lang)) {
 $csvData = $csvReader->process($data_new_lang);
 
 $date = date('d_M_Y', strtotime('-1 day'));
-$jsonFile = $jsonReader->readJson('rates_processed/data_' . $date . '.json');
+$jsonData = $jsonReader->readJson('rates_processed/data_' . $date . '.json');
 
-$dataError = $jsonReader->findErrors(json_decode($jsonFile, true), $csvData);
 if (!$jsonData) {
     die('Json file is empty');
 }
+$dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csvData);
 
 if ($dataError === false) {
     die('Keys dont match, arrays cant be compared');
