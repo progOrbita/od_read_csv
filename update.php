@@ -25,7 +25,7 @@ if (!$csvReader->verifyContent($data_new_lang)) {
 $csvData = $csvReader->process($data_new_lang);
 
 $date = date('d_M_Y', strtotime('-1 day'));
-$jsonData = $jsonReader->readJson('rates_processed/data_' . $date . '.json');
+$jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 
 if (!$jsonData) {
     die('Json file is empty');

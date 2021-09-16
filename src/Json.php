@@ -8,21 +8,20 @@ class Json extends ReadFiles
 {
 
     /**
-     * Read a json file and returns the array with the data if no errors are found.
-     * @param string $jsonStream json file to be readed
-     * @return string|bool string with the json encoded. False if there's an error.
+     * Read the file and returns an array with the data if no errors are found.
+     * @param string $stream file to be readed
+     * @return string|bool string with the file information encoded. False if there's an error.
      */
-    public function readJson(string $jsonStream)
+    public function read(string $stream)
     {
-        if ($this->checkFile($jsonStream, 'json')) {
-            $jsonString = file_get_contents($jsonStream);
-            if (empty($jsonString)) {
-                return false;
-            }
-            return $jsonString;
-        } else {
+        if (!$this->checkFile($stream, 'json')) {
             echo $this->getlastError();
             return false;
         }
+        $fileContent = file_get_contents($stream);
+        if (empty($fileContent)) {
+            return false;
+        }
+        return $fileContent;
     }
 }

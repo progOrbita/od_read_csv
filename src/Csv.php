@@ -58,25 +58,25 @@ class Csv extends ReadFiles
         return true;
     }
     /**
-     * Read and extract the data from an array of csv files into an joined array.
-     * @param array $csvData csv array to extract information
-     * @return array $data array with the joined csv information
+     * Read and extract the data from the array of files into an joined array.
+     * @param array $filesData array to extract information
+     * @return array $joinedData array with the joined information
      */
-    public function process(array $csvData): array
+    public function process(array $filesData): array
     {
         //each id_lang key contains the csv with that language csv
-        foreach ($csvData as $id_lang => $lang_csv) {
+        foreach ($filesData as $id_lang => $lang_csv) {
             foreach ($lang_csv as $csv_values) {
-                $data[$csv_values['Id']]['Titulo'][$id_lang] = $csv_values['Titulo'];
-                $data[$csv_values['Id']]['Description'][$id_lang] = $csv_values['Description'];
+                $joinedData[$csv_values['Id']]['Titulo'][$id_lang] = $csv_values['Titulo'];
+                $joinedData[$csv_values['Id']]['Description'][$id_lang] = $csv_values['Description'];
             }
         }
-        return $data;
+        return $joinedData;
     }
     /**
-     * Check if the csv files array contains an error message.
-     * @param array $csvData array with the csv information
-     * @return bool true if content dont contains messages, false if contains one
+     * Check if the files array contains an error message.
+     * @param array $csvData array with the files
+     * @return bool true if the array dont contains messages, false if there's one
      */
     public function verifyContent(array $csvData): bool
     {

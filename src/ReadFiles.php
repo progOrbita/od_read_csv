@@ -51,17 +51,16 @@ class ReadFiles
 
         $dataError = [];
         foreach ($jsonDecoded as $id => $value) {
-            if (array_keys($jsonDecoded[$id]) === array_keys($csvFiles[$id])) {
-                for ($id_lang = 1; $id_lang <= 4; $id_lang++) {
-                    if ($jsonDecoded[$id]['Titulo'][$id_lang] !== $csvFiles[$id]['Titulo'][$id_lang]) {
-                        $dataError[$id]['Titulo'][$id_lang][] = $csvFiles[$id]['Titulo'][$id_lang];
-                    }
-                    if ($jsonDecoded[$id]['Description'][$id_lang] !== $csvFiles[$id]['Description'][$id_lang]) {
-                        $dataError[$id]['Description'][$id_lang] = $csvFiles[$id]['Description'][$id_lang];
-                    }
-                }
-            } else {
+            if (!array_keys($jsonDecoded[$id]) === array_keys($csvFiles[$id])) {
                 return false;
+            }
+            for ($id_lang = 1; $id_lang <= 4; $id_lang++) {
+                if ($jsonDecoded[$id]['Titulo'][$id_lang] !== $csvFiles[$id]['Titulo'][$id_lang]) {
+                    $dataError[$id]['Titulo'][$id_lang][] = $csvFiles[$id]['Titulo'][$id_lang];
+                }
+                if ($jsonDecoded[$id]['Description'][$id_lang] !== $csvFiles[$id]['Description'][$id_lang]) {
+                    $dataError[$id]['Description'][$id_lang] = $csvFiles[$id]['Description'][$id_lang];
+                }
             }
         }
         return sizeof($dataError) === 0 ? true : $dataError;

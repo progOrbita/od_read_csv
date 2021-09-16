@@ -27,20 +27,20 @@ class Save
                 return $message;
             }
             $message .= '<br/>Directory created';
-            //If file exist and can be created in the directory, create a new one.
-        } else if (!is_file($file)) {
+        }
+        if (!is_writable($file)) {
+            $message .= '<br/>Check your write permissions, information couldnt be written on <b>' . $file . '</b>';
+            return $message;
+        }
+        if (!is_file($file)) {
             $message .= '<br/>File dont exist, creating <b>' . $file . '</b> ...';
             $createdFile = @fopen($file, 'w');
             //If file can't be created in the directory (access denied).
-            if ($createdFile == false) {
+            if ($createdFile === false) {
                 $message .= '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
                 return $message;
             }
             fclose($createdFile);
-            //If file dont have write permissions
-        } else if (!is_writable($file)) {
-            $message .= '<br/>Check your write permissions, information couldnt be written on <b>' . $file . '</b>';
-            return $message;
         }
         file_put_contents($file, $csvData);
         $message .= '<br/>data inserted in the file: <b>' . $file . '</b>';
