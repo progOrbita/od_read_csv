@@ -55,7 +55,7 @@ class ReadFiles
 
         $dataError = [];
         foreach ($jsonDecoded as $id => $value) {
-            if (!array_keys($jsonDecoded[$id]) === array_keys($csvFiles[$id])) {
+            if (array_keys($jsonDecoded[$id]) !== array_keys($csvFiles[$id])) {
                 return false;
             }
             for ($id_lang = 1; $id_lang <= 4; $id_lang++) {
