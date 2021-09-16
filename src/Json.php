@@ -15,7 +15,6 @@ class Json extends ReadFiles
     public function read(string $stream)
     {
         if (!$this->checkFile($stream, 'json')) {
-            echo $this->getlastError();
             return false;
         }
         return file_get_contents($stream);

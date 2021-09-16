@@ -25,9 +25,8 @@ if (!$csvReader->verifyContent($data_new_lang)) {
 $date = date('d_M_Y', strtotime('-1 day'));
 $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 
-
 if (!$jsonData) {
-    die();
+    die($jsonReader->getLastError());
 }
 
 $csvData = $csvReader->process($data_new_lang);
