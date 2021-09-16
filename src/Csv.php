@@ -7,6 +7,11 @@ namespace OrbitaDigital\Read;
 class Csv extends ReadFiles
 {
     private $csv_header = [];
+
+    function __construct(array $csv_header)
+    {
+        $this->csv_header = $csv_header;
+    }
     /**
      * Read a file and returns the array with the data.
      * Open the file, r -> read mode only.
@@ -44,9 +49,6 @@ class Csv extends ReadFiles
      */
     private function checkHeader(array $header): bool
     {
-        if (empty($this->csv_header)) {
-            $this->csv_header = $header;
-        }
         if ($header !== $this->csv_header) {
             return false;
         }

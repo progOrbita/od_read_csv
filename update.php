@@ -8,7 +8,8 @@ use OrbitaDigital\Read\Json;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $jsonReader = new Json();
-$csvReader = new Csv();
+$csvReader = new Csv(['Id', 'Titulo', 'Description'], 'asdas');
+
 $data_new_lang = [];
 
 $csvLang = ['rates/data_en_2.csv', 'rates/data_fr_2.csv', 'rates/data_es_2.csv', 'rates/data_pt_2.csv'];
