@@ -29,7 +29,7 @@ class Csv extends ReadFiles
         }
 
         while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
-            //if the first value after header is empty, skip the row
+            //if the first value of the row is empty, skip it
             if (empty($row[0])) {
                 continue;
             }
