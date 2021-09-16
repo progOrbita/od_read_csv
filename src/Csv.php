@@ -71,15 +71,15 @@ class Csv extends ReadFiles
         return $joinedData;
     }
     /**
-     * Check if the files array contains an error message.
-     * @param array $csvData array with the files
-     * @return bool true if the array dont contains messages, false if there's one
+     * Check if there's an error in the csv files.
+     * @param array $csvFiles array with the files
+     * @return bool true if the array dont contains errors, false if there's one
      */
-    public function verifyContent(array $csvData): bool
+    public function verifyContent(array $csvFiles): bool
     {
-        foreach ($csvData as $lang_csv) {
-            if (is_string($lang_csv)) {
-                echo $lang_csv;
+        foreach ($csvFiles as $fileData) {
+            if (is_string($fileData)) {
+                echo $fileData;
                 return false;
             }
         }
