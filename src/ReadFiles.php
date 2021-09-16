@@ -34,7 +34,8 @@ class ReadFiles
      * Get the information of the error produced
      * @return string string containing the information
      */
-    protected function getError(): string
+    
+    protected function getLastError(): string
     {
         return $this->lastError;
     }

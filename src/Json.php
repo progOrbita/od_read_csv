@@ -20,7 +20,7 @@ class Json extends ReadFiles
             }
             return $jsonString;
         } else {
-            die($this->getError());
+            die($this->getlastError());
         }
     }
     /**

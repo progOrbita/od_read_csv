@@ -40,7 +40,7 @@ class Csv extends ReadFiles
             }
             return $resultArr;
         } else {
-            die($this->getError());
+            return $this->getlastError();
         }
     }
     /**
