@@ -39,7 +39,7 @@ class ReadFiles
      * @return string lastError
      */
 
-    protected function getLastError(): string
+    public function getLastError(): string
     {
         return $this->lastError;
     }
