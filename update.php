@@ -22,7 +22,6 @@ for ($i = 0; $i < count($csvLang); $i++) {
 if (!$csvReader->verifyContent($data_new_lang)) {
     die();
 }
-$csvData = $csvReader->process($data_new_lang);
 
 $date = date('d_M_Y', strtotime('-1 day'));
 $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
@@ -30,10 +29,12 @@ $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 if (!$jsonData) {
     die();
 }
+
+$csvData = $csvReader->process($data_new_lang);
 $dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csvData);
 
 if ($dataError === false) {
-    die('Keys dont match, arrays cant be compared');
+    die('Headers dont match, json and csv files cant be compared');
 }
 if ($dataError === true) {
     die('No errors found');
