@@ -11,20 +11,19 @@ class Csv extends ReadFiles
      * Read a file and returns the array with the data.
      * Open the file, r -> read mode only.
      * fgetcsv requires the file, line length to read and separator. Will return false at the end of the file
-     * Save the header and the rows onto the array which is returned
+     * if everything is right, save the header and the rows into an array which is returned
      * @param string $file csv to be readed
      * @return string|array string with the message error or array with the file data.
      */
     public function read(string $file)
     {
-        if ($this->checkFile($file, 'csv')) {
-            $fileOpen = fopen($file, 'r');
-            $data = [];
-            $header = [];
+        if (!$this->checkFile($file, 'csv')) {
+            return $this->getlastError();
+        }
+        if (filesize($file) === 0) {
+            return '<b>' . $file . ' file is empty</b>, verify the content again';
+        }
 
-            if (filesize($file) === 0) {
-                return '<b>' . $file . ' file is empty</b>, verify the content again';
-            }
             while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
                 if (count($header) == 0) {
                     $header = $row;
@@ -39,13 +38,10 @@ class Csv extends ReadFiles
                     if (empty($row[0])) {
                         continue;
                     }
-                    array_push($data, array_combine($header, $row));
-                }
             }
-            return $data;
-        } else {
-            return $this->getlastError();
+            array_push($data, array_combine($header, $row));
         }
+        return $data;
     }
     /**
      * Check if the csv header is the expected
