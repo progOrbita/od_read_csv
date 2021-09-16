@@ -83,7 +83,8 @@ class Csv extends ReadFiles
     {
         foreach ($csvData as $lang_csv) {
             if (is_string($lang_csv)) {
-                die($lang_csv);
+                echo $lang_csv;
+                return false;
             }
         }
         return true;

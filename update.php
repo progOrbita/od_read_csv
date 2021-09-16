@@ -19,12 +19,18 @@ for ($i = 0; $i < count($csvLang); $i++) {
     $data_new_lang[$i + 1] = $csvReader->read($csvLang[$i]);
 }
 
+if (!$csvReader->verifyContent($data_new_lang)) {
+    die();
+}
 $csvData = $csvReader->process($data_new_lang);
 
 $date = date('d_M_Y', strtotime('-1 day'));
 $jsonFile = $jsonReader->readJson('rates_processed/data_' . $date . '.json');
 
 $dataError = $jsonReader->findErrors(json_decode($jsonFile, true), $csvData);
+if (!$jsonData) {
+    die('Json file is empty');
+}
 
 if ($dataError === false) {
     die('Keys dont match, arrays cant be compared');

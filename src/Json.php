@@ -16,11 +16,12 @@ class Json extends ReadFiles
         if ($this->checkFile($jsonStream, 'json')) {
             $jsonString = file_get_contents($jsonStream);
             if (empty($jsonString)) {
-                die('<b>' . $jsonStream . '</b> is empty, check it again');
+                return false;
             }
             return $jsonString;
         } else {
-            die($this->getlastError());
+            echo $this->getlastError();
+            return false;
         }
     }
     /**
