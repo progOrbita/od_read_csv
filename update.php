@@ -14,7 +14,8 @@ $save = new Save();
 $data_new_lang = [];
 
 $csvLang = ['rates/data_en_2.csv', 'rates/data_fr_2.csv', 'rates/data_es_2.csv', 'rates/data_pt_2.csv'];
-for ($i = 0; $i < sizeof($csvLang); $i++) {
+
+for ($i = 0; $i < count($csvLang); $i++) {
     $data_new_lang[$i + 1] = $csvReader->read($csvLang[$i]);
 }
 
