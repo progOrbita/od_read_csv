@@ -24,32 +24,34 @@ class Csv extends ReadFiles
             return '<b>' . $file . ' file is empty</b>, verify the content again';
         }
 
-            while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
-                if (count($header) == 0) {
-                    $header = $row;
-                    if (count($this->csv_header) == 0) {
-                        $this->csv_header = $row;
-                    }
-                    if (!$this->checkHeader($row)) {
-                        return 'Header of <b>'.$file.'</b> is wrong';
-                    }
-                } else {
-                    //if the first value after header is empty, skip the row
-                    if (empty($row[0])) {
-                        continue;
-                    }
+        $data = [];
+
+        $fileOpen = fopen($file, 'r');
+        $header = fgetcsv($fileOpen, 0, ",");
+
+        if (!$this->checkHeader($header)) {
+            return 'header of <b>' . $file . '</b> is not fine';
+        }
+
+        while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
+            //if the first value after header is empty, skip the row
+            if (empty($row[0])) {
+                continue;
             }
             array_push($data, array_combine($header, $row));
         }
         return $data;
     }
     /**
-     * Check if the csv header is the expected
-     * @param array $header header of the csv file (first row from read)
-     * @return bool false if dont match, true otherwise
+     * Check if the header is the expected
+     * @param array $header header of the file
+     * @return bool false if headers dont match, true otherwise
      */
     private function checkHeader(array $header): bool
     {
+        if (empty($this->csv_header)) {
+            $this->csv_header = $header;
+        }
         if ($header !== $this->csv_header) {
             return false;
         }
