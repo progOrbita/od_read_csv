@@ -4,11 +4,13 @@ namespace OrbitaDigital\Read;
 
 use OrbitaDigital\Read\Csv;
 use OrbitaDigital\Read\Json;
+use OrbitaDigital\Read\Save;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 $jsonReader = new Json();
 $csvReader = new Csv();
+$save = new Save();
 $data_new_lang = [];
 
 $csvLang = ['rates/data_en_2.csv', 'rates/data_fr_2.csv', 'rates/data_es_2.csv', 'rates/data_pt_2.csv'];
@@ -29,5 +31,5 @@ if ($dataError === false) {
 if ($dataError === true) {
     die('No errors found');
 } else {
-    echo '<br/>Error founds between the files, ' . $jsonReader->saveJson($dataError, 'error');
+    echo '<br/>Error founds, ' . $save->saveJson($dataError, 'error');
 }
