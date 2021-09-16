@@ -6,42 +6,56 @@ namespace OrbitaDigital\Read;
 
 class Csv extends ReadFiles
 {
+    private $csv_header = ['Id', 'Titulo', 'Description'];
     /**
      * Read a file and returns the array with the data.
      * Open the file, r -> read mode only.
      * fgetcsv requires the file, line length to read and separator. Will return false at the end of the file
      * Save the header and the rows onto the array which is returned
-     * @param string $csvFile file to be readed
-     * @return mixed string with the message error or array with the file data. Exit if file cant be readed by any means.
+     * @param string $file csv to be readed
+     * @return string|array string with the message error or array with the file data.
      */
-    public function read(string $csvFile)
+    public function read(string $file)
     {
-        if ($this->checkFile($csvFile, 'csv')) {
-            $file = fopen($csvFile, 'r');
-            $resultArr = [];
-            $headArr = [];
+        if ($this->checkFile($file, 'csv')) {
+            $fileOpen = fopen($file, 'r');
+            $data = [];
+            $header = [];
 
-            if (filesize($csvFile) === 0) {
-                return '<b>' . $csvFile . ' file is empty</b>, verify the content again';
+            if (filesize($file) === 0) {
+                return '<b>' . $file . ' file is empty</b>, verify the content again';
             }
-            while (($row = fgetcsv($file, 0, ",")) !== FALSE) {
-                if (count($headArr) == 0) {
-                    if (empty($row[0])) {
-                        return '<b>Error reading the header of ' . $csvFile . ', exiting</b>';
+            while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
+                if (count($header) == 0) {
+                    //if header dont match
+                    if (!$this->checkHeader($row)) {
+                        return '<b>Header dont match, exiting...';
                     }
-                    $headArr = $row;
+                    $header = $row;
                 } else {
-                    //Check whetever the first value is empty
+                    //if the first value after header is empty, skip the row
                     if (empty($row[0])) {
                         continue;
                     }
-                    array_push($resultArr, array_combine($headArr, $row));
+                    array_push($data, array_combine($header, $row));
                 }
             }
-            return $resultArr;
+            return $data;
         } else {
             return $this->getlastError();
         }
+    }
+    /**
+     * Check if the csv header is the expected
+     * @param array $header header of the csv file (first row from read)
+     * @return bool false if dont match, true otherwise
+     */
+    private function checkHeader(array $header): bool
+    {
+        if ($header !== $this->csv_header) {
+            return false;
+        }
+        return true;
     }
     /**
      * Read and extract the data from an array of csv files into an joined array. Exit if a file is empty
