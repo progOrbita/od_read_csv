@@ -90,8 +90,7 @@ class ReadFiles
         $currentDate = date('d_M_Y'); //day, short month and year 4 digits
         $dir = getcwd() . '/rates_processed'; //takes current script directory
         $file = $dir . '/' . $prefix . '_' . $currentDate . '.json';
-        //Verify if directory exist and have write access (can nest directories)
-
+        //Check and attempt to create the directory (directory can be nested)
         if (!is_dir($dir)) {
             $this->message .= 'Directory <b>' . $dir . '</b> not found, creating...';
             if (!mkdir($dir, 0777, true)) {
@@ -100,17 +99,17 @@ class ReadFiles
             }
             $this->message .= '<br/>Directory created';
         }
-
+        //If directory exist but dont have write permissions for files
+        if (!is_writable($dir)) {
+            $this->lastError = '<br/>Error, verify your write permissions in <b>' . $dir . '</b> folder';
+            return false;
+        }
         if (!is_file($file)) {
             $this->message .= '<br/>File dont exist, creating <b>' . $file . '</b> ...';
-            $createdFile = @fopen($file, 'w');
-            //If file can't be created in the directory (access denied).
-            if ($createdFile === false) {
-                $this->lastError = '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
-                return false;
-            }
+            $createdFile = fopen($file, 'w');
             fclose($createdFile);
         }
+        //If file exist but write is forbidden
         if (!is_writable($file)) {
             $this->lastError = '<br/>Check your write permissions, information couldnt be written on <b>' . $file . '</b>';
             return false;
