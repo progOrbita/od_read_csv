@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace OrbitaDigital\Read;
 
+use OrbitaDigital\Read\ReadFiles;
+
 class Csv extends ReadFiles
 {
     private $csv_header = [];
