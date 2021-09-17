@@ -11,10 +11,13 @@ $jsonReader = new Json();
 $csvReader = new Csv(['Id', 'Titulo', 'Description']);
 
 $data_lang = [];
-$csvLang = ['rates/data_en.csv', 'rates/data_fr.csv', 'rates/data_es.csv', 'rates/data_pt.csv'];
+$csvLang = [1 => 'rates/data_en.csv', 2 => 'rates/data_fr.csv', 3 => 'rates/data_es.csv', 4 => 'rates/data_pt.csv'];
 
-for ($i = 0; $i < count($csvLang); $i++) {
-    $data_lang[$i + 1] = $csvReader->read($csvLang[$i]);
+foreach ($csvLang as $id_lang =>  $file) {
+    $data_lang[$id_lang] = $csvReader->read($file);
+    if(is_string($data_lang[$id_lang])){
+        die($csvReader->getLastError());  
+    }
 }
 
 if (!$csvReader->verifyContent($data_lang)) {
