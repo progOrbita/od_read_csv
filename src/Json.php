@@ -21,6 +21,12 @@ class Json extends ReadFiles
         }
         return file_get_contents($stream);
     }
+    /**
+     * Save the data into a json file.
+     * @param array $saveData information to be saved
+     * @param string $prefix optional, include a prefix in the file
+     * @return bool false if there's an error, true if data was saved
+     */
     public function save(array $saveData, string $prefix = ''): bool
     {
         return $this->saveJson($saveData, $prefix);

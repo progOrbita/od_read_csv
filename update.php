@@ -27,9 +27,9 @@ if (!$jsonData) {
 $csvData = $csvReader->process($data_new_lang);
 $dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csvData);
 if (is_array($dataError)) {
-    if (!$jsonReader->save($dataError, 'error')) {
-        die($jsonReader->getLastError());
+    if ($jsonReader->save($dataError, 'error')) {
+        die($jsonReader->getMessage());
     }
-    die($jsonReader->getMessage());
+    die($jsonReader->getLastError());
 }
 echo ($dataError === true) ? 'No errors found' : 'Headers dont match, json and csv files cant be compared';
