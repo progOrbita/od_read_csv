@@ -15,14 +15,11 @@ $csvLang = [1 => 'rates/data_en.csv', 2 => 'rates/data_fr.csv', 3 => 'rates/data
 
 foreach ($csvLang as $id_lang =>  $file) {
     $data_lang[$id_lang] = $csvReader->read($file);
-    if(is_string($data_lang[$id_lang])){
-        die($csvReader->getLastError());  
+    if (is_string($data_lang[$id_lang])) {
+        die($csvReader->getLastError());
     }
 }
 
-if (!$csvReader->verifyContent($data_lang)) {
-    die($csvReader->getLastError());
-}
 $csvData = $csvReader->process($data_lang);
 
 echo $jsonReader->save($csvData, 'data');

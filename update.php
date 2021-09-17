@@ -12,12 +12,14 @@ $csvReader = new Csv(['Id', 'Titulo', 'Description']);
 
 $data_new_lang = [];
 
-$csvLang = [ 1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
+$csvLang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
 
 foreach ($csvLang as $id_lang =>  $file) {
 
-if (!$csvReader->verifyContent($data_new_lang)) {
-    die($csvReader->getLastError());
+    $data_new_lang[$id_lang] = $csvReader->read($file);
+    if (is_string($data_new_lang[$id_lang])) {
+        die($csvReader->getLastError());
+    }
 }
 
 $date = date('d_M_Y', strtotime('-1 day'));
