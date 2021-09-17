@@ -7,7 +7,7 @@ namespace OrbitaDigital\Read;
 class ReadFiles
 {
     protected $lastError = '';
-    protected $message = '';
+    private $message = '';
 
     /**
      * Check if file exist, can be readed and extension is right
@@ -78,6 +78,7 @@ class ReadFiles
      */
     public function saveJson(array $data, string $prefix = ''): bool
     {
+        $this->message = '';
         $csvData = json_encode($data, JSON_PRETTY_PRINT, JSON_FORCE_OBJECT);
         $currentDate = date('d_M_Y'); //day, short month and year 4 digits
         $dir = getcwd() . '/rates_processed'; //takes current script directory
@@ -98,7 +99,7 @@ class ReadFiles
             $createdFile = @fopen($file, 'w');
             //If file can't be created in the directory (access denied).
             if ($createdFile === false) {
-                $this->lastError = '<br/>File couldnt be created on <b>' . $dir . '</b>, verify the permissions';
+                $this->lastError = '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
                 return false;
             }
             fclose($createdFile);
