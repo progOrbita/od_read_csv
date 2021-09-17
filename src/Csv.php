@@ -36,7 +36,7 @@ class Csv extends ReadFiles
             return 'header of <b>' . $file . '</b> is not fine';
         }
 
-        while (($row = fgetcsv($fileOpen, 0, ",")) !== FALSE) {
+        while (($row = fgetcsv($fileOpen, 0, ",")) !== false) {
             //if the first value of the row is empty, skip it
             if (empty($row[0])) {
                 continue;
@@ -52,10 +52,7 @@ class Csv extends ReadFiles
      */
     private function checkHeader(array $header): bool
     {
-        if ($header !== $this->csv_header) {
-            return false;
-        }
-        return true;
+        return $header === $this->csv_header;
     }
     /**
      * Read and extract the data from the array of files into an joined array.
