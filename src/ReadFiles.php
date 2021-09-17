@@ -75,7 +75,7 @@ class ReadFiles
                 }
             }
         }
-        return sizeof($dataError) === 0 ? true : $dataError;
+        return empty($dataError) ? true : $dataError;
     }
     /**
      * Attempts to writes data into a json file
