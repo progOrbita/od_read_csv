@@ -1,7 +1,5 @@
 <?php
 
-namespace OrbitaDigital\Read;
-
 use OrbitaDigital\Read\Csv;
 use OrbitaDigital\Read\Json;
 

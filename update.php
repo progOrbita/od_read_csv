@@ -1,7 +1,5 @@
 <?php
 
-namespace OrbitaDigital\Read;
-
 use OrbitaDigital\Read\Csv;
 use OrbitaDigital\Read\Json;
 
@@ -12,7 +10,7 @@ $csvReader = new Csv(['Id', 'Titulo', 'Description']);
 
 $data_new_lang = [];
 
-$csvLang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
+$csvLang = [1 => 'rates/data_en_2_ed.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
 
 foreach ($csvLang as $id_lang =>  $file) {
 
