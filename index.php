@@ -22,4 +22,7 @@ foreach ($csvLang as $id_lang =>  $file) {
 
 $csvData = $csvReader->process($data_lang);
 
-echo $jsonReader->save($csvData, 'data');
+if (!$jsonReader->save($csvData, 'data')) {
+    die($jsonReader->getLastError());
+}
+die($jsonReader->getMessage());
