@@ -44,7 +44,14 @@ class ReadFiles
     {
         return $this->lastError;
     }
-
+    /**
+     * Get message, information about saving a json file
+     * @return string message
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
     /**
      * Compare the json file with the array of csv files to find distinct values beetwen both
      * @param array $jsonDecoded json which have right values
@@ -111,9 +118,5 @@ class ReadFiles
         file_put_contents($file, $csvData);
         $this->message .= '<br/>data inserted in the file: <b>' . $file . '</b>';
         return true;
-    }
-    public function getMessage()
-    {
-        return $this->message;
     }
 }
