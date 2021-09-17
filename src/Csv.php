@@ -19,7 +19,7 @@ class Csv extends ReadFiles
      * Read a file and returns the array with the data.
      * Open the file, r -> read mode only.
      * fgetcsv requires the file, line length to read and separator. Will return false at the end of the file
-     * if everything is right, save the header and the rows into an array which is returned
+     * if everything is right, save the header and the rows into an array which is returned if there's no errors
      * @param string $file csv to be readed
      * @return bool|array array with the file data or false if there's an error
      */
@@ -34,7 +34,6 @@ class Csv extends ReadFiles
 
         if (!$this->checkHeader($header)) {
             $this->lastError = 'header of <b>' . $file . '</b> is not fine';
-            var_dump($this->getLastError());
             return false;
         }
 
