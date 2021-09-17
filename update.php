@@ -17,7 +17,7 @@ $csvLang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/
 foreach ($csvLang as $id_lang =>  $file) {
 
     $data_new_lang[$id_lang] = $csvReader->read($file);
-    if (is_string($data_new_lang[$id_lang])) {
+    if (!($data_new_lang[$id_lang])) {
         die($csvReader->getLastError());
     }
 }

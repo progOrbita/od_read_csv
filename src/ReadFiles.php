@@ -98,7 +98,7 @@ class ReadFiles
             $createdFile = @fopen($file, 'w');
             //If file can't be created in the directory (access denied).
             if ($createdFile === false) {
-                $this->lastError = '<br/>File couldnt be created on <b>' . $dir . '</b>, exiting';
+                $this->lastError = '<br/>File couldnt be created on <b>' . $dir . '</b>, verify the permissions';
                 return false;
             }
             fclose($createdFile);
