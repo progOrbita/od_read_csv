@@ -33,7 +33,8 @@ class Csv extends ReadFiles
         $header = fgetcsv($fileOpen, 0, ",");
 
         if (!$this->checkHeader($header)) {
-            return 'header of <b>' . $file . '</b> is not fine';
+            $this->lastError = 'header of <b>' . $file . '</b> is not fine';
+            return $this->getlastError();
         }
 
         while (($row = fgetcsv($fileOpen, 0, ",")) !== false) {
