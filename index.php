@@ -5,7 +5,7 @@ use OrbitaDigital\Read\Json;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-if (!isset($_GET['add']) && !isset($_GET['update'])) {
+if (!isset($_GET['add']) || !isset($_GET['update'])) {
     die('add to add or update to update, what is your choice?');
 }
 
