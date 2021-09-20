@@ -64,6 +64,8 @@ class Csv extends ReadFiles
      */
     public function process(array $filesData): array
     {
+        $joinedData = [];
+        
         //each id_lang key contains the csv with that language csv
         foreach ($filesData as $id_lang => $lang_csv) {
             foreach ($lang_csv as $csv_values) {
