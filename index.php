@@ -5,6 +5,10 @@ use OrbitaDigital\Read\Json;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+if (!isset($_GET['add']) && !isset($_GET['update'])) {
+    die('add to add or update to update, what is your choice?');
+}
+
 $jsonReader = new Json();
 $csvReader = new Csv(['Id', 'Titulo', 'Description']);
 
@@ -54,6 +58,4 @@ if (isset($_GET['update'])) {
     }
     echo ($dataError === true) ? 'No errors found' : 'Headers dont match, json and csv files cant be compared';
 }
-if (!isset($_GET['add']) || !isset($_GET['update'])) {
-    echo 'add to add or update to update, what is your choice?';
-}
+
