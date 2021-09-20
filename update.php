@@ -10,16 +10,15 @@ $csvReader = new Csv(['Id', 'Titulo', 'Description']);
 
 $data_new_lang = [];
 
-$csvLang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
+$csv_new_lang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
 
-foreach ($csvLang as $id_lang =>  $file) {
+foreach ($csv_new_lang as $id_lang =>  $file) {
 
-    $data_file = $csvReader->read($file);
-    $data_file ? $data_lang[$id_lang] = $data_file : die($csvReader->getLastError());
-
+    $data_new_file = $csvReader->read($file);
+    $data_new_file ? $data_new_lang[$id_lang] = $data_new_file : die($csvReader->getLastError());
 }
 
-$date = date('d_M_Y', strtotime('-1 day'));
+$date = date('d_M_Y');
 $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 
 if (!$jsonData) {
