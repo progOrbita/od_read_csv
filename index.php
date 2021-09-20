@@ -14,13 +14,13 @@ $data_new_lang = [];
 $csvLang = [1 => 'rates/data_en.csv', 2 => 'rates/data_fr.csv', 3 => 'rates/data_es.csv', 4 => 'rates/data_pt.csv'];
 $csv_new_lang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
 
-foreach ($csvLang as $id_lang =>  $file) {
-
-    $data_file = $csvReader->read($file);
-    $data_file ? $data_lang[$id_lang] = $data_file : die($csvReader->getLastError());
-}
-
 if (isset($_GET['add'])) {
+
+    foreach ($csvLang as $id_lang =>  $file) {
+
+        $data_file = $csvReader->read($file);
+        $data_file ? $data_lang[$id_lang] = $data_file : die($csvReader->getLastError());
+    }
     echo 'Attempting to add data...<br/>';
     $csvData = $csvReader->process($data_lang);
 
@@ -38,20 +38,23 @@ if (isset($_GET['update'])) {
         $data_new_file = $csvReader->read($file);
         $data_new_file ? $data_new_lang[$id_lang] = $data_new_file : die($csvReader->getLastError());
     }
-    
+
     $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 
     if (!$jsonData) {
         die($jsonReader->getLastError());
     }
 
-    $csvData = $csvReader->process($data_new_lang);
-    $dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csvData);
+    $csv_new_data = $csvReader->process($data_new_lang);
+    $dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csv_new_data);
     if (is_array($dataError)) {
         if ($jsonReader->save($dataError, 'error')) {
-            die('Error founds, '.$jsonReader->getMessage());
+            die('Error founds, ' . $jsonReader->getMessage());
         }
         die($jsonReader->getLastError());
     }
     echo ($dataError === true) ? 'No errors found' : 'Headers dont match, json and csv files cant be compared';
+}
+if (!isset($_GET['add']) || !isset($_GET['update'])) {
+    echo 'add to add or update to update, what is your choice?';
 }
