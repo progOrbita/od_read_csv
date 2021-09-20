@@ -68,7 +68,7 @@ class ReadFiles
             }
             for ($id_lang = 1; $id_lang <= 4; $id_lang++) {
                 if ($jsonDecoded[$id]['Titulo'][$id_lang] !== $csvFiles[$id]['Titulo'][$id_lang]) {
-                    $dataError[$id]['Titulo'][$id_lang][] = $csvFiles[$id]['Titulo'][$id_lang];
+                    $dataError[$id]['Titulo'][$id_lang] = $csvFiles[$id]['Titulo'][$id_lang];
                 }
                 if ($jsonDecoded[$id]['Description'][$id_lang] !== $csvFiles[$id]['Description'][$id_lang]) {
                     $dataError[$id]['Description'][$id_lang] = $csvFiles[$id]['Description'][$id_lang];
@@ -107,6 +107,10 @@ class ReadFiles
         if (!is_file($file)) {
             $this->message .= '<br/>File dont exist, creating <b>' . $file . '</b> ...';
             $createdFile = fopen($file, 'w');
+            if($createdFile === false){
+                $this->lastError = 'File couldnt be created, verify your permissions';
+                return false;
+            }
             fclose($createdFile);
         }
         //If file exist but write is forbidden
