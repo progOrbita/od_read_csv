@@ -29,10 +29,6 @@ class Json extends ReadFiles
      */
     public function save(array $saveData, string $prefix = ''): bool
     {
-        if (empty($saveData)) {
-            $this->lastError = 'csv information not found';
-            return false;
-        }
         return $this->saveJson($saveData, $prefix);
     }
 }

@@ -46,6 +46,11 @@ class Csv extends ReadFiles
             }
             array_push($data, array_combine($header, $row));
         }
+        //if header is right but content in totally empty
+        if(empty($data)){
+            $this->lastError = 'File data is empty';
+            return false;
+        }
         return $data;
     }
     /**
@@ -65,6 +70,10 @@ class Csv extends ReadFiles
     public function process(array $filesData)
     {
         $csv_data = [];
+        //If there is no files at all
+        if (empty($filesData)) {
+            $this->lastError = 'csv information not found';
+            return false;
         }
         //reading each file
         foreach ($filesData as $id_lang =>  $file) {
@@ -73,6 +82,7 @@ class Csv extends ReadFiles
                 return false;
             }
             $csv_data[$id_lang] = $data_file;
+
         }
 
         $joinedData = [];
