@@ -75,6 +75,9 @@ class ReadFiles
                 }
             }
         }
+        if(!empty($dataError)){
+            $this->message = 'Errors founds';
+        }
         return empty($dataError) ? true : $dataError;
     }
     /**
