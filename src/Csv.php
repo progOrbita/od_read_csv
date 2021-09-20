@@ -60,14 +60,24 @@ class Csv extends ReadFiles
     /**
      * Read and extract the data from the array of files into an joined array.
      * @param array $filesData array to extract information
-     * @return array $joinedData array with the joined information
+     * @return bool|array false if there's an error, otherwise an array with the joined information
      */
-    public function process(array $filesData): array
+    public function process(array $filesData)
     {
-        $joinedData = [];
+        $csv_data = [];
+        }
+        //reading each file
+        foreach ($filesData as $id_lang =>  $file) {
+            $data_file = $this->read($file);
+            if (!$data_file) {
+                return false;
+            }
+            $csv_data[$id_lang] = $data_file;
+        }
 
+        $joinedData = [];
         //each id_lang key contains the csv with that language csv
-        foreach ($filesData as $id_lang => $lang_csv) {
+        foreach ($csv_data as $id_lang => $lang_csv) {
             foreach ($lang_csv as $csv_values) {
                 $joinedData[$csv_values['Id']]['Titulo'][$id_lang] = $csv_values['Titulo'];
                 $joinedData[$csv_values['Id']]['Description'][$id_lang] = $csv_values['Description'];
