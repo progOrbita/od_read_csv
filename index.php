@@ -48,9 +48,8 @@ if (isset($_GET['update'])) {
     $csvData = $csvReader->process($data_new_lang);
     $dataError = $jsonReader->findErrors(json_decode($jsonData, true), $csvData);
     if (is_array($dataError)) {
-        echo $jsonReader->getMessage();
         if ($jsonReader->save($dataError, 'error')) {
-            die($jsonReader->getMessage());
+            die('Error founds, '.$jsonReader->getMessage());
         }
         die($jsonReader->getLastError());
     }
