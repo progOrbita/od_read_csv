@@ -6,12 +6,11 @@ use OrbitaDigital\Read\Json;
 require_once __DIR__ . '/vendor/autoload.php';
 
 if (!isset($_GET['add']) && !isset($_GET['update'])) {
-    die('add to add or update to update, what is your choice?');
+    die('put add or update in header, what is your choice?');
 }
 
 $jsonReader = new Json();
 $csvReader = new Csv(['Id', 'Titulo', 'Description']);
-
 $csvLang = [1 => 'rates/data_en.csv', 2 => 'rates/data_fr.csv', 3 => 'rates/data_es.csv', 4 => 'rates/data_pt.csv'];
 $csv_new_lang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/data_es_2.csv', 4 => 'rates/data_pt_2.csv'];
 
@@ -22,7 +21,6 @@ if (isset($_GET['add'])) {
     if (!$csvData) {
         die($csvReader->getLastError());
     }
-
     if (!$jsonReader->save($csvData, 'data')) {
         die($jsonReader->getLastError());
     }
@@ -31,13 +29,12 @@ if (isset($_GET['add'])) {
 
 if (isset($_GET['update'])) {
     echo '<br/>checking errors...<br/>';
-
     $csv_new_data = $csvReader->process($csv_new_lang);
     if (!$csv_new_data) {
         die($csvReader->getLastError());
     }
-
     $date = date('d_M_Y');
+
     $jsonData = $jsonReader->read('rates_processed/data_' . $date . '.json');
 
     if (!$jsonData) {
@@ -53,4 +50,3 @@ if (isset($_GET['update'])) {
     }
     echo ($dataError === true) ? 'No errors found' : 'Headers dont match, json and csv files cant be compared';
 }
-

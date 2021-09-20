@@ -47,7 +47,7 @@ class Csv extends ReadFiles
             array_push($data, array_combine($header, $row));
         }
         //if header is right but content in totally empty
-        if(empty($data)){
+        if (empty($data)) {
             $this->lastError = 'File data is empty';
             return false;
         }
@@ -82,7 +82,6 @@ class Csv extends ReadFiles
                 return false;
             }
             $csv_data[$id_lang] = $data_file;
-
         }
 
         $joinedData = [];
