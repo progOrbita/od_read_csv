@@ -29,7 +29,7 @@ class Json extends ReadFiles
      */
     public function save(array $saveData, string $prefix = ''): bool
     {
-        if(empty($saveData)){
+        if (empty($saveData)) {
             $this->lastError = 'csv information not found';
             return false;
         }

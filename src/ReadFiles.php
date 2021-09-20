@@ -107,7 +107,7 @@ class ReadFiles
         if (!is_file($file)) {
             $this->message .= '<br/>File dont exist, creating <b>' . $file . '</b> ...';
             $createdFile = fopen($file, 'w');
-            if($createdFile === false){
+            if ($createdFile === false) {
                 $this->lastError = 'File couldnt be created, verify your permissions';
                 return false;
             }
