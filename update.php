@@ -14,7 +14,9 @@ $csvLang = [1 => 'rates/data_en_2.csv', 2 => 'rates/data_fr_2.csv', 3 => 'rates/
 
 foreach ($csvLang as $id_lang =>  $file) {
 
-    $csvReader->read($file) ? $data_new_lang[$id_lang] = $csvReader->read($file) : die($csvReader->getLastError());
+    $data_file = $csvReader->read($file);
+    $data_file ? $data_lang[$id_lang] = $data_file : die($csvReader->getLastError());
+
 }
 
 $date = date('d_M_Y', strtotime('-1 day'));
